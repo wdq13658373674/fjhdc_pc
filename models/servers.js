@@ -13,9 +13,9 @@ var Servers=function(){
 
         data=data||{};
         var content=querystring.stringify(data);
-        var path="/index.php/"+controller;
+        var path="/"+controller;
         var options={
-            hostname:'www.dcserver.com',
+            hostname:'svrdc.2.fjhok.com',
             port:'80',
             method:'POST',
             path:path,
