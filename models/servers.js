@@ -33,7 +33,8 @@ var Servers=function(){
                 _data += chunk;
             });
             res.on('end', function(){
-                fn!=undefined && fn(_data);
+                _data=JSON.parse(_data);
+                fn!=undefined && fn(_data[0]);
             });
         });
         req.write(content);

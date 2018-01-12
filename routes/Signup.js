@@ -5,19 +5,18 @@ var Model=require('./../models/servers');
 var data=new Model();
 
 /**
- * 首页
+ * 管理项目-意向报名
  */
 router.get('/', function(req, res, next) {
+    /**
+     * todo list
+     * **/
     data.getModel('Project/index',{},function(data){
-        console.log(data);
-        console.log(data.ret);
-
         if(data.code==1){
-            res.render('index', {data:data.ret.data,title: '首页'});
-        }else {
-            res.send('数据获取：'+data.desc);
+            res.render('signup/index', {data:data.ret.data,title: '意向报名'});
         }
     });
 });
+
 
 module.exports = router;

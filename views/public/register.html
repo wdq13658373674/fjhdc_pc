@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/css/form.css">
+    <!--selfCss end-->
+</head>
+<body>
+<div class="form-wrap">
+    <a class="logo mt180" href="/"><img src="/style/images/public/logo.png" alt=""></a>
+
+    <div class="form-box">
+        <h1 class="title mt40"><img src="/style/images/public/logo2_name.png" alt=""></h1>
+
+        <form class="form mt40" action="/Public/reg_post" method="post">
+            <div class="input-group">
+                <input class="icon-input phone required" name="phone" id="phone" type="text" autocomplete="off"  placeholder="请输入手机号">
+                <div class="err-tip"></div><!--错误提示-->
+                <div class="suc-tip"></div><!--成功提示-->
+            </div>
+            <div class="input-group">
+                <input class="icon-input pas  required" name="password" type="password" autocomplete="off" placeholder="请输入密码">
+                <div class="err-tip"></div>
+                <div class="suc-tip"></div>
+            </div>
+            <div class="input-group">
+                <input class="icon-input pas required" name="repassword" type="password" autocomplete="off" placeholder="请输入密码">
+                <div class="err-tip"></div>
+                <div class="suc-tip"></div>
+            </div>
+
+            <div class="input-group">
+                <div class="clearfix">
+                    <input class="input w189 pull-left required" name="code" type="text" autocomplete="off" placeholder="请输入验证码">
+                    <a href="javascript:modules.countDown(60)" id="send" class="btn-code pull-right" type="button">发送验证码</a>
+                </div>
+                <div class="err-tip"></div>
+                <div class="suc-tip"></div>
+            </div>
+
+            <div class="rule-box clearfix">
+                <label class="check-label pull-left">
+                    <input id="rule" class="check-input" type="checkbox" checked>
+                    <div class="check clearfix">
+                        <span class="arc pull-left"></span>
+                        <span class="yellow pull-left">我已同意xxx协议</span>
+                    </div>
+                </label>
+            </div>
+
+            <input id="register" type="submit" class="btn-submit mt30" value="注册">
+        </form>
+    </div>
+</div>
+
+<!--footer start-->
+<%include ../common/footer.html %>
+<!--footer end-->
+
+<script src="/style/js/addons/layui/layui.js"></script>
+<script src="/style/js/reg.js"></script>
+<script>
+    $(function(){
+        layui.use('layer',function(){
+            var layer = layui.layer;
+            /**注册提交*/
+            $('#register').click(function(){
+                var self=$(this)
+                    ,rule=$('#rule');
+
+                $('.form input').triggerHandler('blur');
+                if(tips.text() != ''){
+                    return false;
+                }else if(!rule.is(':checked')){
+                    layer.alert('请同意注册协议！');
+                    return false;
+                }
+            });
+        })
+
+    })
+</script>
+</body>
+</html>

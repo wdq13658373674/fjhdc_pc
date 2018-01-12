@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/css/project.css">
+    <!--selfCss end-->
+</head>
+<body>
+<!--header start-->
+<%include ../common/header.html %>
+<!--header end-->
+
+<div id="project-sign-sucess">
+    <div class="crumbs mt40">
+        <a href="#">房计划地产首页 </a> >
+        <a href="#">管理项目 </a> >
+        <a href="#">邻水县西部新城A-01地块 </a> >
+        <span>意向报名 </span>
+    </div>
+
+    <h1 class="title"> <span class="icon"></span> <span class="pull-left">参与成功，工作人员将在24小时内与您联系</span></h1>
+    <div class="border-line mt40"></div>
+    <div class="f14 txt-center mt30"><span id="mes" class="yellow-light">3</span>秒后自动跳回项目页面</div>
+    <a href="" class="btn">立即跳转</a>
+</div>
+
+<!--footer start-->
+<%include ../common/footer.html %>
+<!--footer end-->
+<script>
+    $(function(){
+        /*var i=3;
+        var intervalid = setInterval(fun, 1000);
+
+        function fun() {
+            if (i == 0) {
+                window.location.href = "#";
+                clearInterval(intervalid);
+            }
+            document.getElementById("mes").innerHTML = i;
+            i--;
+        }*/
+    })
+</script>
+</body>
+</html>

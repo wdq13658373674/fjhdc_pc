@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/css/form.css">
+</head>
+<body>
+<div class="form-wrap">
+    <a class="logo mt180" href="/"><img src="/style/images/public/logo.png" alt=""></a>
+
+    <div class="form-box">
+        <h1 class="title mt40"><img src="/style/images/public/logo2_name.png" alt=""></h1>
+
+        <form class="form mt40" action="">
+            <div class="input-group">
+                <input class="icon-input user" name="phone" type="text" autocomplete="off" placeholder="请输入手机号">
+            </div>
+            <div class="input-group mt20">
+                <input class="icon-input pas" name="password" type="password" autocomplete="off" placeholder="请输入密码">
+                <div class="err-tip"></div><!--错误提示-->
+            </div>
+
+            <input type="submit" class="btn-submit" value="登陆">
+
+            <div class="link clearfix">
+                <a class="yellow-light pull-left" href="#">忘记密码 ></a>
+
+                <span class="pull-right yellow">还没有房计划地产账号？ <a class="yellow-light" href="/Public/reg">点击注册 ></a></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!--footer start-->
+<%include ../common/footer.html %>
+<!--footer end-->
+
+<script src="/style/js/addons/layui/layui.js"></script>
+<script>
+    $(function(){
+
+    })
+</script>
+</body>
+</html>

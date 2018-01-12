@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/css/user.css">
+    <!--selfCss end-->
+</head>
+<body>
+<!--header start-->
+<%include ../common/uheader.html %>
+<!--header end-->
+
+<div class="user-wrap min-width">
+    <div class="user-crumbs clearfix">
+        <div class="crumbs mt20 pull-right">
+            <a href="#">房计划地产首页 </a> >
+            <a href="#">个人中心 </a> >
+            <span>推荐客户 </span>
+        </div>
+    </div>
+
+    <div class="user-container mt20 clearfix">
+        <!--menu-list start-->
+        <%include ../common/usermenu.html %>
+        <!--menu-list end-->
+
+        <!--user-content start-->
+        <div class="user-content pull-right">
+            <div id="user-recommend" class=" clearfix">
+                <form class="form mt60" action="">
+                    <div class="input-group mt30">
+                        <label class="label yellow">推荐人姓名</label>
+                        <input class="input" type="text" placeholder="请输入推荐人姓名">
+                    </div>
+
+                    <div class="input-group mt30">
+                        <label class="label yellow">推荐人电话</label>
+                        <input class="input" type="text" placeholder="请输入推荐人电话">
+                    </div>
+
+                    <button class="btn-rec">我要推荐</button>
+                </form>
+
+                <div class="user-hr mt40"></div>
+
+                <h1 class="title">已推荐人列表</h1>
+
+                <table class="table mb40">
+                    <tbody>
+                    <tr>
+                        <td>刘涛</td>
+                        <td>13986325412</td>
+                        <td>推荐成功！</td>
+                        <td class="edit-box">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>刘涛</td>
+                        <td>13986325412</td>
+                        <td class="rec">推荐中...</td>
+                        <td class="edit-box">
+                            <a class="edits edit" href="javascript:void(0);">编辑</a>
+                            <a class="edits del"  data-method="notice" href="javascript:void(0);">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>刘涛</td>
+                        <td>13986325412</td>
+                        <td class="rec">推荐中...</td>
+                        <td class="edit-box">
+                            <a class="edits edit" href="javascript:void(0);">编辑</a>
+                            <a class="edits del"  data-method="notice" href="javascript:void(0);">删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--user-content end-->
+    </div>
+</div>
+
+<!--编辑弹窗 start-->
+<div class="prompt" style="display:none;">
+    <form class="prompt-form" action="">
+        <div class="input-group">
+            <label class="yellow">推荐人姓名</label>
+            <input class="input" type="text" placeholder="请输入推荐人姓名" value="">
+        </div>
+
+        <div class="input-group mt30">
+            <label class="yellow">推荐人电话</label>
+            <input class="input" type="text" placeholder="请输入推荐人电话">
+        </div>
+    </form>
+</div>
+<!--编辑弹窗 end-->
+
+<script src="/style/js/addons/layui/layui.js"></script>
+<script>
+    $(function(){
+        layui.use('layer', function(){
+            var layer = layui.layer;
+
+            /**编辑提示层**/
+            var prompt_html = $('.prompt').html();
+            $('.table').on('click','.edit',function () {
+                if(prompt_html){
+                    $('.prompt').remove();
+                    modules.modal({
+                        content:prompt_html
+                        ,offset: 'auto'
+                        ,area: '575px'
+                        ,id:'prompt'
+                        ,yes:function(index, layero){
+                            console.log(layero.find('.input').eq(0).val());
+
+                            layer.close(index);//关闭弹层
+                        }
+                    });
+                }
+            })
+
+
+            /**删除提示层**/
+            $('.table').on('click','.del',function () {
+                var self = $(this);
+
+                modules.modal({
+                    content:'<div class="mod-del">确定删除此推荐人</div>'
+                    ,area: '518px'
+                    ,yes: function(index, layero){
+                        self.parents('tr').remove();
+
+                        layer.close(index);//关闭弹层
+                    }
+                });
+            })
+        });
+    })
+</script>
+</body>
+</html>

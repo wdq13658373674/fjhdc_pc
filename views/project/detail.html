@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/js/addons/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/style/css/project.css">
+    <!--selfCss end-->
+</head>
+<body>
+<!--header start-->
+<%include ../common/header.html %>
+<!--header end-->
+
+<div id="project-detail">
+    <div class="crumbs mt40">
+        <a href="#">房计划地产首页 </a> >
+        <a href="#">管理项目 </a> >
+        <span>邻水县西部新城A-01地块 </span>
+    </div>
+
+    <div class="content clearfix">
+        <div class="flash pull-left">
+            <!-- Swiper start -->
+            <div class="swiper-container gallery-top" style="width:100%;height:450px;background:#fff;">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                    <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                    <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                    <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                </div>
+            </div>
+            <div class="swiper-container gallery-thumbs" style="width:100%;height:90px;background:#fff;">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                    <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                    <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                    <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                </div>
+
+                <!-- Add Arrows -->
+                <div class="swiper-button-next swiper-button-white gallery-btn"></div>
+                <div class="swiper-button-prev swiper-button-white gallery-btn"></div>
+                <!-- Swiper end -->
+            </div>
+
+        </div>
+
+        <div class="msg pull-left">
+            <h1 class="title f20">邻水县西部新城A-01地块</h1>
+
+            <div class="horizontal-line mt50"></div>
+            <ul class="msg-list">
+                <li class="item">
+                    <span class="tit">地块位置</span>
+                    <div class="con">邻水县西部新城三完小旁边</div>
+                </li>
+                <li class="item">
+                    <span class="tit">地块编号</span>
+                    <div class="con">A-05</div>
+                </li>
+                <li class="item">
+                    <span class="tit">地块面积</span>
+                    <div class="con">100000 <span class="yellow-light">m<sup>2</sup></span></div>
+                </li>
+                <li class="item">
+                    <span class="tit">建筑面积</span>
+                    <div class="con">100000 <span class="yellow-light">m<sup>2</sup></span></div>
+                </li>
+                <li class="item">
+                    <span class="tit">容积率</span>
+                    <div class="con">2.0</div>
+                </li>
+                <li class="item">
+                    <span class="tit">绿化率</span>
+                    <div class="con">45%</div>
+                </li>
+                <li class="item">
+                    <span class="tit">建筑密度</span>
+                    <div class="con">55%</div>
+                </li>
+            </ul>
+            <div class="horizontal-line"></div>
+
+            <a href="/Signup" class="btn">意向收集</a>
+        </div>
+    </div>
+</div>
+
+<div id="project-tab" class="mt60">
+    <div class="item active">项目介绍</div>
+    <div class="item">周边配套</div>
+    <div class="item">建设进度</div>
+</div>
+
+<div class="tab-box active">
+    <div id="project-box1" class="content">
+        <img src="/style/images/test/house.jpg" alt="">
+    </div>
+</div>
+
+<div class="tab-box">
+    <div id="project-box2" class="content">content2</div>
+</div>
+
+<div class="tab-box">
+    <div id="project-box3" class="content">content3</div>
+</div>
+
+
+<!--footer start-->
+<%include ../common/footer.html %>
+<!--footer end-->
+
+<script src="/style/js/addons/swiper/swiper.min.js"></script>
+<script>
+    $(function(){
+        /**flash**/
+        var galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 10,
+            loop:true,
+            loopedSlides: 5,
+
+        });
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 16,
+            slidesPerView: 4,
+            touchRatio: 0.2,
+            loop: true,
+            loopedSlides: 5,
+            slidesOffsetBefore : 43,
+            slideToClickedSlide: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        galleryTop.controller.control = galleryThumbs;
+        galleryThumbs.controller.control = galleryTop;
+
+        /**tab切换**/
+        $('#project-tab>.item').click(function(){
+            var self = $(this)
+                ,inx=self.index();
+            var tabBox = $('.tab-box');
+            self.addClass('active').siblings('.item').removeClass('active');
+
+
+            tabBox.removeClass('active');
+            tabBox.eq(inx).addClass('active');
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/css/userpro.css">
+    <!--selfCss end-->
+</head>
+<body>
+<!--header start-->
+<%include ../common/uheader.html %>
+<!--header end-->
+
+<div class="user-project-wrap min-width">
+    <div class="user-crumbs clearfix">
+        <div class="crumbs mt20 pull-right">
+            <a href="#">房计划地产首页 </a> >
+            <a href="#">个人中心 </a> >
+            <span>推荐客户 </span>
+        </div>
+    </div>
+
+    <div  id="project-sales-detail" class="user-project-container mt20">
+        <div class="text-box">
+            邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边邻水县西部新城三完小旁边
+        </div>
+
+        <div class="project-imgs clearfix">
+            <ul id="project-imgs" class="img-list">
+                <li class="item"><img src="/style/images/test/house.jpg" alt=""></li>
+                <li class="item"><img src="/style/images/test/house.png" alt=""></li>
+                <li class="item"><img src="/style/images/test/house.jpg" alt=""></li>
+                <li class="item"><img src="/style/images/test/house.png" alt=""></li>
+                <li class="item"><img src="/style/images/test/house.jpg" alt=""></li>
+                <li class="item"><img src="/style/images/test/house.png" alt=""></li>
+                <li class="item"><img src="/style/images/test/house.jpg" alt=""></li>
+                <li class="item"><img src="/style/images/test/house.png" alt=""></li>
+            </ul>
+        </div>
+
+        <button class="btn-back">返回</button>
+    </div>
+</div>
+
+<script src="/style/js/addons/layui/layui.js"></script>
+<script>
+    $(function(){
+        layui.use('layer',function(){
+            var layer = layui.layer;
+
+            /**图片弹出层**/
+            layer.photos({
+                photos: '#project-imgs'
+                ,anim:0
+            });
+        })
+    })
+</script>
+</body>
+</html>

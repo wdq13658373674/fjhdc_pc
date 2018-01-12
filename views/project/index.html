@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/js/addons/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/style/css/project.css">
+    <!--selfCss end-->
+</head>
+<body>
+<!--header start-->
+<%include ../common/header.html %>
+<!--header end-->
+
+<div>暂无</div>
+
+<!--footer start-->
+<%include ../common/footer.html %>
+<!--footer end-->
+
+<script src="/style/js/addons/swiper/swiper.min.js"></script>
+<script>
+    $(function(){
+        /**flash**/
+        var galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 10,
+            loop:true,
+            loopedSlides: 5,
+
+        });
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 16,
+            slidesPerView: 4,
+            touchRatio: 0.2,
+            loop: true,
+            loopedSlides: 5,
+            slidesOffsetBefore : 43,
+            slideToClickedSlide: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        galleryTop.controller.control = galleryThumbs;
+        galleryThumbs.controller.control = galleryTop;
+
+        /**tab切换**/
+        $('#project-tab>.item').click(function(){
+            var self = $(this)
+                ,inx=self.index();
+            var tabBox = $('.tab-box');
+            self.addClass('active').siblings('.item').removeClass('active');
+
+
+            tabBox.removeClass('active');
+            tabBox.eq(inx).addClass('active');
+        })
+    })
+</script>
+</body>
+</html>

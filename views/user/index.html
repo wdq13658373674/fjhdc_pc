@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/css/user.css">
+    <!--selfCss end-->
+</head>
+<body>
+<!--header start-->
+<%include ../common/uheader.html %>
+<!--header end-->
+
+<div class="user-wrap min-width">
+    <div class="user-crumbs clearfix">
+        <div class="crumbs mt20 pull-right">
+            <a href="/">房计划地产首页 </a> >
+            <span>个人中心 </span>
+        </div>
+    </div>
+
+    <div class="user-container mt20 clearfix">
+        <!--menu-list start-->
+        <%include ../common/usermenu.html %>
+        <!--menu-list end-->
+
+        <!--user-content start-->
+        <div class="user-content pull-right">
+            <div id="user-edit" class="user-msg-list clearfix">
+                <div class="img pull-left mr20"><img src="/style/images/test/house.png" alt=""></div>
+
+                <ul class="msg-list">
+                    <li class="item f16">你好，房计划地产用户</li>
+                    <li class="item yellow-light f30 mt10">王棣</li>
+                    <li class="item mt20 clearfix">
+                        <span class="yellow-light3 pull-left">上次登录时间&nbsp;</span>
+                        <span class="pull-left"> &nbsp;2017/05/28&nbsp;</span>
+                        <span class="pull-left"> &nbsp;14:25:15</span>
+                        <a class="btn-edit pull-right" href="/user/message">编辑个人资料</a>
+                    </li>
+                </ul>
+
+                <div class="user-hr mt40"></div>
+            </div>
+        </div>
+        <!--user-content end-->
+    </div>
+</div>
+
+<script>
+    $(function(){
+
+    })
+</script>
+</body>
+</html>
