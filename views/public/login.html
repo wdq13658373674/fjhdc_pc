@@ -15,10 +15,10 @@
 
         <form class="form mt40" action="">
             <div class="input-group">
-                <input class="icon-input user" name="phone" type="text" autocomplete="off" placeholder="请输入手机号">
+                <input class="icon-input user required" sucmsg=" " name="phone" type="text" autocomplete="off" placeholder="请输入手机号">
             </div>
             <div class="input-group mt20">
-                <input class="icon-input pas" name="password" type="password" autocomplete="off" placeholder="请输入密码">
+                <input class="icon-input pas required" sucmsg=" " name="password" type="password" autocomplete="off" placeholder="请输入密码">
                 <div class="err-tip"></div><!--错误提示-->
             </div>
 
@@ -38,11 +38,32 @@
 <%include ../common/footer.html %>
 <!--footer end-->
 
-<script src="/style/js/addons/layui/layui.js"></script>
+<script src="../../js/addons/layui/layui.js"></script>
+<script src="../../js/addons/Validform_v5.3.2_min.js"></script>
 <script>
-    $(function(){
 
+    $(function(){
+        var form=$("#logForm").Validform({
+            tiptype:function(msg,o,cssctl){
+                var objtip=$(".err-tip");
+                cssctl(objtip,o.type);
+                objtip.text(msg);
+            }
+        });
+
+        form.addRule([{
+            ele: ".required:eq(0)",
+            datatype: "m",
+            nullmsg:'请填写手机号'
+        },
+            {
+                ele: ".required:eq(1)",
+                datatype: "*6-16",
+                nullmsg:'请填写密码'
+            }
+        ]);
     })
+
 </script>
 </body>
 </html>
