@@ -14,10 +14,10 @@
     <div class="form-box">
         <h1 class="title mt40"><img src="/style/images/public/logo2_name.png" alt=""></h1>
 
-        <form class="form mt40" action="" id="regForm">
+        <form class="form mt40" action="/Public/reg_post" id="regForm" method="post">
             <div class="input-group">
                 <div>
-                    <input class="icon-input phone required" type="text" sucmsg=" " autocomplete="off"  placeholder="请输入手机号">
+                    <input class="icon-input phone required" name="phone" type="text" sucmsg=" " autocomplete="off"  placeholder="请输入手机号">
                 </div>
                 <span class="Validform_checktip suc"></span>
             </div>
@@ -29,22 +29,22 @@
             </div>
             <div class="input-group mt20">
                 <div>
-                    <input class="icon-input pas required" type="password" sucmsg=" " autocomplete="off" placeholder="请输入密码">
+                    <input class="icon-input pas required" name="repassword" type="password" sucmsg=" " autocomplete="off" placeholder="请输入密码">
                 </div>
                 <span class="Validform_checktip suc"></span>
             </div>
 
             <div class="input-group mt20">
                 <div class="clearfix">
-                    <input class="input w189 pull-left required" type="text" datatype="*" sucmsg=" " autocomplete="off" placeholder="请输入验证码">
-                    <a href="javascript:modules.countDown(60)" id="send" class="btn-code pull-right" type="button">发送验证码</a>
+                    <input class="input w189 pull-left required" name="code" type="text" datatype="*" sucmsg=" " autocomplete="off" placeholder="请输入验证码">
+                    <a href="javascript:modules.countDown(300);"  id="send" class="btn-code pull-right" type="button">发送验证码</a>
                 </div>
-                <span class="Validform_checktip suc"></span>
+                <span class="Validform_checktip"></span>
             </div>
 
             <div class="rule-box clearfix mt20">
                 <label class="check-label">
-                    <input id="rule" class="check-input"  datatype="*" type="checkbox" checked>
+                    <input id="rule" class="check-input" datatype="*" sucmsg=" " type="checkbox" name="rule" checked>
                     <div class="check clearfix">
                         <span class="arc pull-left"></span>
                         <span class="yellow pull-left">我已同意xxx协议</span>
@@ -62,10 +62,11 @@
 <%include ../common/footer.html %>
 <!--footer end-->
 
-<script src="../../js/addons/layui/layui.js"></script>
-<script src="../../js/addons/Validform_v5.3.2_min.js"></script>
+<script src="/style/js/addons/layui/layui.js"></script>
+<script src="/style/js/addons/Validform_v5.3.2_min.js"></script>
 <script>
     $(function(){
+        /**表单验证**/
         var form = $("#regForm").Validform({
             tiptype: 2,
             label: ".label",
@@ -73,7 +74,8 @@
         });
         form.addRule([{
             ele: ".required:eq(0)",
-            datatype: "m"
+            datatype: "m",
+            errormsg:'手机号格式不正确！'
         },
             {
                 ele: ".required:eq(1)",
@@ -86,6 +88,22 @@
                 errormsg:'两次输入密码不一致'
             }
         ]);
+
+        /**短信验证码**/
+        $('#send').click(function(){
+            var self=$(this);
+            var phone=$('input[name="phone"]').val();
+            /**ajax**/
+            $.ajax({
+                type: "POST",
+                url: "/Public/sendVerify",
+                data: {phone:phone,type:1},
+                dataType: "json",
+                success: function(data){
+
+                }
+            });
+        })
     })
 </script>
 </body>

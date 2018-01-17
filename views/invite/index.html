@@ -29,15 +29,17 @@
         <!--user-content start-->
         <div class="user-content pull-right">
             <div id="user-recommend" class=" clearfix">
-                <form class="form mt60" action="">
+                <form class="form mt60" id="remForm" action="/Invite/invite_add" method="post">
                     <div class="input-group mt30">
                         <label class="label yellow">推荐人姓名</label>
-                        <input class="input" type="text" placeholder="请输入推荐人姓名">
+                        <input class="input required" sucmsg=" " type="text" name="realname" placeholder="请输入推荐人姓名">
+                        <span class="Validform_checktip ml20"></span>
                     </div>
 
                     <div class="input-group mt30">
                         <label class="label yellow">推荐人电话</label>
-                        <input class="input" type="text" placeholder="请输入推荐人电话">
+                        <input class="input required" sucmsg=" " type="text" name="phone" placeholder="请输入推荐人电话">
+                        <span class="Validform_checktip ml20"></span>
                     </div>
 
                     <button class="btn-rec">我要推荐</button>
@@ -47,36 +49,33 @@
 
                 <h1 class="title">已推荐人列表</h1>
 
+                <%if(num == 0){%>
+                <div class="empty">暂时没有推荐人</div>
+                <%}else{%>
                 <table class="table mb40">
                     <tbody>
-                    <tr>
-                        <td>刘涛</td>
-                        <td>13986325412</td>
-                        <td>推荐成功！</td>
-                        <td class="edit-box">
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>刘涛</td>
-                        <td>13986325412</td>
+                    <% data.forEach(function(items){if(items.status!=-1){ %>
+                    <tr data-id="<%=items.id%>">
+                        <td><%=items.invite_real_name%></td>
+                        <td><%=items.mobile%></td>
+                        <%if(items.status==0){%>
                         <td class="rec">推荐中...</td>
                         <td class="edit-box">
                             <a class="edits edit" href="javascript:void(0);">编辑</a>
                             <a class="edits del"  data-method="notice" href="javascript:void(0);">删除</a>
                         </td>
+                        <%}else if(items.status==1){%>
+                        <td>推荐成功</td>
+                        <td></td>
+                        <%}else if(items.status==2){%>
+                        <td>推荐失败</td>
+                        <td></td>
+                        <%}%>
                     </tr>
-                    <tr>
-                        <td>刘涛</td>
-                        <td>13986325412</td>
-                        <td class="rec">推荐中...</td>
-                        <td class="edit-box">
-                            <a class="edits edit" href="javascript:void(0);">编辑</a>
-                            <a class="edits del"  data-method="notice" href="javascript:void(0);">删除</a>
-                        </td>
-                    </tr>
+                    <% }}) %>
                     </tbody>
                 </table>
+                <%}%>
             </div>
         </div>
         <!--user-content end-->
@@ -85,60 +84,133 @@
 
 <!--编辑弹窗 start-->
 <div class="prompt" style="display:none;">
-    <form class="prompt-form" action="">
+    <form id="promptForm" class="prompt-form" action="/Invite/invite_edit" method="post">
         <div class="input-group">
             <label class="yellow">推荐人姓名</label>
-            <input class="input" type="text" placeholder="请输入推荐人姓名" value="">
+            <input class="input required2" sucmsg=" " name="realname" type="text" placeholder="请输入推荐人姓名" value="">
         </div>
 
         <div class="input-group mt30">
             <label class="yellow">推荐人电话</label>
-            <input class="input" type="text" placeholder="请输入推荐人电话">
+            <input class="input required2" sucmsg=" " name="phone" type="text" placeholder="请输入推荐人电话">
         </div>
+        <input class="input" type="hidden" name="id" value="">
+        <div class="err-tip center mt20" style="width:332px;margin-left:85px;"></div>
+        <button type="submit" class="btn-sure">确定</button>
     </form>
 </div>
 <!--编辑弹窗 end-->
 
 <script src="/style/js/addons/layui/layui.js"></script>
+<script src="/style/js/addons/Validform_v5.3.2_min.js"></script>
+
 <script>
     $(function(){
+        /**表单验证*/
+        var form = $("#remForm").Validform({
+            tiptype: 3,
+            label: ".label",
+            showAllError: true,
+        });
+
+        form.addRule([{
+            ele: ".required:eq(0)",
+            datatype: "*",
+        },
+            {
+                ele: ".required:eq(1)",
+                datatype: "m",
+                errormsg:'手机号格式不正确！'
+            }
+        ]);
+
+        /**提示层**/
         layui.use('layer', function(){
             var layer = layui.layer;
 
             /**编辑提示层**/
             var prompt_html = $('.prompt').html();
             $('.table').on('click','.edit',function () {
+                var self=$(this)
+                    ,parents=self.parents('tr');
+                var tds=parents.find('td')
+                    ,name=tds.eq(0).text()
+                    ,phone=tds.eq(1).text()
+                    ,id=parents.data("id");
+
                 if(prompt_html){
                     $('.prompt').remove();
                     modules.modal({
                         content:prompt_html
                         ,offset: 'auto'
                         ,area: '575px'
+                        ,btn: 0
                         ,id:'prompt'
-                        ,yes:function(index, layero){
-                            console.log(layero.find('.input').eq(0).val());
-
-                            layer.close(index);//关闭弹层
-                        }
                     });
+                    var inputs = $('.prompt-form .input');
+                    inputs.eq(0).val(name);
+                    inputs.eq(1).val(phone);
+                    inputs.eq(2).val(id);
+                    checkForm();
                 }
             })
 
-
             /**删除提示层**/
             $('.table').on('click','.del',function () {
-                var self = $(this);
+                var self = $(this)
+                    ,parents=self.parents('tr');
+                var id=parents.data('id');
 
                 modules.modal({
                     content:'<div class="mod-del">确定删除此推荐人</div>'
                     ,area: '518px'
                     ,yes: function(index, layero){
-                        self.parents('tr').remove();
+                        /**ajax**/
+                        $.ajax({
+                            type: "POST",
+                            url: "/Invite/invite_del",
+                            data: {id:id},
+                            dataType: "json",
+                            success: function(data){
+                                if(data.code==1){
+                                    layer.alert("删除成功",function (inx) {
+                                        layer.closeAll();
+                                        self.parents('tr').remove();
+                                        location.reload();
+                                    });
+                                }else{
+                                    layer.alert("删除失败");
+                                }
+                            }
+                        });
 
-                        layer.close(index);//关闭弹层
                     }
                 });
             })
+
+            /**弹出层表单验证*/
+            function checkForm() {
+                var form2=$("#promptForm").Validform({
+                    label: ".yellow",
+                    showAllError: true,
+                    tiptype:function(msg,o,cssctl){
+                        var objtip=$(".err-tip");
+                        cssctl(objtip,o.type);
+                        objtip.text(msg);
+                    }
+                });
+
+                form2.addRule([{
+                    ele: ".required2:eq(0)",
+                    datatype: "*",
+                },
+                    {
+                        ele: ".required2:eq(1)",
+                        datatype: "m",
+                        errormsg:'手机号格式不正确！'
+                    }
+                ]);
+            }
         });
     })
 </script>

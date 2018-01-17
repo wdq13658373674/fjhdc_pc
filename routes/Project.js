@@ -22,14 +22,18 @@ router.get('/', function(req, res, next) {
  * 管理项目-详情
  */
 router.get('/detail', function(req, res, next) {
-    var pid=req.query.id;
-
     /**
      * todo list
      * **/
-    data.getModel('Project/index',{id:pid},function(data){
+    var pid=req.query.id;
+
+    data.getModel('project/ProjectDetails',{project_id:pid},function(data){
+        console.log(data);
         if(data.code==1){
-            res.render('project/detail', {data:data.ret.data,title: '管理项目详情'});
+            var obj={data:data.ret,title: '管理项目详情'};
+            res.render('project/detail',obj);
+        }else {
+            res.send('数据获取：'+data.desc);
         }
     });
 });

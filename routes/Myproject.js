@@ -8,12 +8,19 @@ var data=new Model();
  * 个人中心-参与项目
  */
 router.get('/', function(req, res, next) {
-    /**
-     * todo list
-     * **/
-    data.getModel('Project/index',{},function(data){
+    var uid=req.cookies.user_id//获取cookie
+
+    data.getModel('project_user/index',{
+        "uid":uid
+    },function(data){
+        console.log(data);
         if(data.code==1){
-            res.render('myproject/index.html', {data:data.ret.data,title: '个人中心-参与项目'});
+            var obj={
+                data:data.ret,
+                title: '个人中心-参与项目',
+                menu:"pro"
+            }
+            res.render('myproject/index.html',obj);
         }
     });
 });

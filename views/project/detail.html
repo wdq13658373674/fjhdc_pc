@@ -48,37 +48,37 @@
         </div>
 
         <div class="msg pull-left">
-            <h1 class="title f20">邻水县西部新城A-01地块</h1>
+            <h1 class="title f20"><%=data.title%></h1>
 
             <div class="horizontal-line mt50"></div>
             <ul class="msg-list">
                 <li class="item">
                     <span class="tit">地块位置</span>
-                    <div class="con">邻水县西部新城三完小旁边</div>
+                    <div class="con"><%=data.address%></div>
                 </li>
                 <li class="item">
                     <span class="tit">地块编号</span>
-                    <div class="con">A-05</div>
+                    <div class="con"><%=data.code%></div>
                 </li>
                 <li class="item">
                     <span class="tit">地块面积</span>
-                    <div class="con">100000 <span class="yellow-light">m<sup>2</sup></span></div>
+                    <div class="con"><%=data.land_area%> <span class="yellow-light">m<sup>2</sup></span></div>
                 </li>
                 <li class="item">
                     <span class="tit">建筑面积</span>
-                    <div class="con">100000 <span class="yellow-light">m<sup>2</sup></span></div>
+                    <div class="con"><%=data.code%><span class="yellow-light">m<sup>2</sup></span></div>
                 </li>
                 <li class="item">
                     <span class="tit">容积率</span>
-                    <div class="con">2.0</div>
+                    <div class="con"><%=data.ratio%></div>
                 </li>
                 <li class="item">
                     <span class="tit">绿化率</span>
-                    <div class="con">45%</div>
+                    <div class="con"><%=data.green%></div>
                 </li>
                 <li class="item">
                     <span class="tit">建筑密度</span>
-                    <div class="con">55%</div>
+                    <div class="con"><%=data.built_density%></div>
                 </li>
             </ul>
             <div class="horizontal-line"></div>
@@ -96,7 +96,7 @@
 
 <div class="tab-box active">
     <div id="project-box1" class="content">
-        <img src="/style/images/test/house.jpg" alt="">
+        <%=data.detail_content%>
     </div>
 </div>
 

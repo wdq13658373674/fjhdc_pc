@@ -17,7 +17,7 @@
         <div class="crumbs mt20 pull-right">
             <a href="#">房计划地产首页 </a> >
             <a href="#">个人中心 </a> >
-            <span>推荐客户 </span>
+            <span>参与项目 </span>
         </div>
     </div>
 
@@ -29,105 +29,61 @@
         <!--user-content start-->
         <div class="user-content pull-right">
             <div id="user-project" class="clearfix">
-                <a class="project clearfix" href="/Myproject/detail">
-                    <div class="img pull-left"><img src="/style/images/test/house.jpg" alt=""></div>
+                <%if(data.length==0){%>
+                <div class="empty" style="margin:20px 30px;">你还没有参与项目</div>
+                <%}else{data.forEach(function(items){%>
+                <a class="project clearfix" href="/Myproject/detail?id=<%=items.id%>">
+                    <div class="img pull-left"><img src="http://res.2.fjhok.com/res/image/<%=items.cover%>" alt=""></div>
 
                     <div class="content pull-left">
                         <ul class="msg-list clearfix">
                             <li class="item w113">
                                 <div class="tit">预计回报率</div>
-                                <div class="con f40">40%</div>
+                                <div class="con f40"><%=items.max_ratio%></div>
                             </li>
                             <li class="item w252">
                                 <div class="tit ml30">项目总投资（元）</div>
-                                <div class="con ml30">2000,000,000.00</div>
+                                <div class="con ml30"><%=items.max_amount%></div>
                             </li>
                             <li class="item">
                                 <div class="tit ml30">预计回报期限（天）</div>
-                                <div class="con ml30">720</div>
+                                <div class="con ml30"><%=items.max_term%></div>
                             </li>
                         </ul>
                         <div class="user-hr mt20"></div>
                         <ul class="msg-list2 clearfix">
                             <li class="item">
                                 <div class="tit">地块位置</div>
-                                <div class="con">邻水县西部新城三完小旁边</div>
+                                <div class="con"><%=items.address%></div>
                             </li>
                             <li class="item">
                                 <div class="tit">容积率</div>
-                                <div class="con">2.0</div>
+                                <div class="con"><%=items.ratio%></div>
                             </li>
                             <li class="item">
                                 <div class="tit">地块编号</div>
-                                <div class="con">A-05</div>
+                                <div class="con"><%=items.land_code%></div>
                             </li>
                             <li class="item">
                                 <div class="tit">绿化率</div>
-                                <div class="con">45%</div>
+                                <div class="con"><%=items.green%></div>
                             </li>
                             <li class="item">
                                 <div class="tit">地块面积</div>
-                                <div class="con">100000 <span class="yellow">m<sup>2</sup></span></div>
+                                <div class="con"><%=items.land_area%> <span class="yellow">m<sup>2</sup></span></div>
                             </li>
                             <li class="item">
                                 <div class="tit">建筑密度</div>
-                                <div class="con">55%</div>
+                                <div class="con"><%=items.built_density%></div>
                             </li>
                         </ul>
                     </div>
                 </a>
+                <!--<div class="page-box mt60">-->
+                    <!--<div id="page"></div>-->
+                <!--</div>-->
+                <%})}%>
 
-                <a class="project clearfix" href="#">
-                    <div class="img pull-left"><img src="/style/images/test/house.png" alt=""></div>
-
-                    <div class="content pull-left">
-                        <ul class="msg-list clearfix">
-                            <li class="item w113">
-                                <div class="tit">预计回报率</div>
-                                <div class="con f40">40%</div>
-                            </li>
-                            <li class="item w252">
-                                <div class="tit ml30">项目总投资（元）</div>
-                                <div class="con ml30">2000,000,000.00</div>
-                            </li>
-                            <li class="item">
-                                <div class="tit ml30">预计回报期限（天）</div>
-                                <div class="con ml30">720</div>
-                            </li>
-                        </ul>
-                        <div class="user-hr mt20"></div>
-                        <ul class="msg-list2 clearfix">
-                            <li class="item">
-                                <div class="tit">地块位置</div>
-                                <div class="con">邻水县西部新城三完小旁边</div>
-                            </li>
-                            <li class="item">
-                                <div class="tit">容积率</div>
-                                <div class="con">2.0</div>
-                            </li>
-                            <li class="item">
-                                <div class="tit">地块编号</div>
-                                <div class="con">A-05</div>
-                            </li>
-                            <li class="item">
-                                <div class="tit">绿化率</div>
-                                <div class="con">45%</div>
-                            </li>
-                            <li class="item">
-                                <div class="tit">地块面积</div>
-                                <div class="con">100000 <span class="yellow">m<sup>2</sup></span></div>
-                            </li>
-                            <li class="item">
-                                <div class="tit">建筑密度</div>
-                                <div class="con">55%</div>
-                            </li>
-                        </ul>
-                    </div>
-                </a>
-
-                <div class="page-box mt60">
-                    <div id="page"></div>
-                </div>
             </div>
         </div>
         <!--user-content end-->

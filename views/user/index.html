@@ -32,11 +32,19 @@
 
                 <ul class="msg-list">
                     <li class="item f16">你好，房计划地产用户</li>
-                    <li class="item yellow-light f30 mt10">王棣</li>
+
+                    <li class="item yellow-light f30 mt10">
+                        <%if(data.real_name){%>
+                           <%=data.real_name%>
+                        <%}else if(data.nickname){%>
+                            <%=data.nickname%>
+                        <%}else if(data.mobile){%>
+                            <%=data.mobile%>
+                        <%}%>
+                    </li>
                     <li class="item mt20 clearfix">
                         <span class="yellow-light3 pull-left">上次登录时间&nbsp;</span>
-                        <span class="pull-left"> &nbsp;2017/05/28&nbsp;</span>
-                        <span class="pull-left"> &nbsp;14:25:15</span>
+                        <span class="pull-left"> &nbsp;<%=data.last_login_time%>&nbsp;</span>
                         <a class="btn-edit pull-right" href="/user/message">编辑个人资料</a>
                     </li>
                 </ul>

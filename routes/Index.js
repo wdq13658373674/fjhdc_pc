@@ -9,11 +9,17 @@ var data=new Model();
  */
 router.get('/', function(req, res, next) {
     data.getModel('Project/index',{},function(data){
-        console.log(data);
-        console.log(data.ret);
+       /* console.log(data);
+        console.log(data.ret);*/
+
+        var obj={
+            data:data.ret.data,
+            title: '首页',
+            menu:"pro"
+        }
 
         if(data.code==1){
-            res.render('index', {data:data.ret.data,title: '首页'});
+            res.render('index', obj);
         }else {
             res.send('数据获取：'+data.desc);
         }

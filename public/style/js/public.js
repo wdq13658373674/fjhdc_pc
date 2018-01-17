@@ -46,16 +46,6 @@ var modules = (function (mod){
             }, 1000)
         }
     };
-    /** 验证邮编 **/
-    mod.is_email = function(emails) {
-        var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-        return reg.test(emails);
-    };
-    /** 验证手机号 **/
-    mod.is_mobile = function(phone) {
-        var reg = /^((\(\d{2,3}\))|(\d{3}\-))?(13|15|18|14|17)\d{9}$/;//手机
-        return reg.test(phone);
-    };
     /** 弹层 **/
     mod.modal=function (options) {
         return layer.open($.extend({
