@@ -69,22 +69,12 @@ var modules = (function (mod){
             ,skin:'mod-tip'
             ,area: '148px'
         });
-    }
-    /**获取当前时间**/
-    mod.nowTime=function(time){
-        var date = new Date();
-        var year = date.getFullYear()
-            ,month = date.getMonth()+1
-            ,day = date.getDate();
-
-        var hour = date.getHours()
-            ,minute = date.getMinutes()
-            ,second = date.getSeconds();
-
-        time == false ? time= year + '-' + month + '-' + day : time =  year + '-' + month + '-' + day + ' ' + hour + ":" + minute + ':' +second;
-
-        return time;
-    }
+    };
+    /** 验证手机号 **/
+    mod.is_mobile = function(phone) {
+        var reg = /^((\(\d{2,3}\))|(\d{3}\-))?(13|15|18|14|17)\d{9}$/;//手机
+        return reg.test(phone);
+    };
     return mod;
 })(window);
 

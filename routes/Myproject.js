@@ -5,7 +5,7 @@ var Model=require('./../models/servers');
 var data=new Model();
 
 /**
- * 个人中心-参与项目（页面渲染）
+ * 个人中心-参与项目（渲染）
  */
 router.get('/', function(req, res, next) {
     var params={

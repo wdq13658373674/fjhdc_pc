@@ -38,7 +38,6 @@ router.get('/message', function(req, res, next) {
 
     data.getModel('user_member/index',params,function(data){
         if(data.code==1){
-            console.log(data);
             if(data.ret.birthday == null){
                 data.ret.birthday=funs.now_time(false);
             }

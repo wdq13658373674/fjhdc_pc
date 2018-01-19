@@ -8,10 +8,11 @@ var data=new Model();
 var funs=require('./../models/public');
 
 /**
- * 管理项目-意向报名（页面渲染）
+ * 管理项目-意向报名（渲染）
  */
 router.get('/', function(req, res, next) {
     var params={
+        'uid':req.session.user,
         'project_id':req.query.id
     }
 
@@ -24,13 +25,18 @@ router.get('/', function(req, res, next) {
             }
             res.render('intention/index', obj);
         }else {
-            res.send({"数据" : data.desc});
+            var obj={
+                'title':'系统跳转',
+                'is_login':funs.is_login(req, res),
+                'msg':'你已参与此项目，即将跳转到个人中心参与项目'
+            }
+            res.render('public/jump', obj);
         }
     });
 });
 
 /**
- * 管理项目-意向报名（报名提交）
+ * 管理项目-意向报名（报名）
  */
 router.post('/', function(req, res, next) {
     var params={
@@ -41,11 +47,10 @@ router.post('/', function(req, res, next) {
 
     data.getModel('project/intentionAdd',params,function(data){
         if(data.code==1){
-            // res.send({"数据" : data.desc});
             var obj={
                 'title':'系统跳转',
                 'is_login':funs.is_login(req, res),
-                'msg':data.desc
+                'msg':'参与成功，工作人员将在24小时内与您联系'
             }
             res.render('public/jump', obj);
         }else {

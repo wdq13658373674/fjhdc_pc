@@ -14,8 +14,8 @@
 
 <div id="project-sign-sucess">
     <div class="crumbs mt40">
-        <a href="#">房计划地产首页 </a> >
-        <a href="#">管理项目 </a> >
+        <a href="/">房计划地产首页 </a> >
+        <a href="/Project">管理项目 </a> >
         <a href="#">邻水县西部新城A-01地块 </a> >
         <span>意向报名 </span>
     </div>
@@ -23,7 +23,7 @@
     <h1 class="title"><img class="img" src="/style/images/icons/z_suc.png" alt=""><%=msg%></h1>
     <div class="border-line mt40"></div>
     <div class="f14 txt-center mt30"><span id="mes" class="yellow-light">3</span>秒后自动跳回项目页面</div>
-    <a href="javascript:window.location.href = document.referrer;" class="btn">立即跳转</a>
+    <a href="/Myproject" class="btn pro-link">立即跳转</a>
 </div>
 
 <!--footer start-->
@@ -35,8 +35,9 @@
         var intervalid = setInterval(fun, 1000);
 
         function fun() {
+            var url=$('.pro-link').attr('href');
             if (i == 0) {
-                window.location.href = document.referrer;
+                window.location.href = url;
                 clearInterval(intervalid);
             }
             document.getElementById("mes").innerHTML = i;
