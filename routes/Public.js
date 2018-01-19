@@ -3,19 +3,8 @@ var router = express.Router();
 
 var Model=require('./../models/servers');
 var data=new Model();
-//公共方法
+//common fun
 var funs=require('./../models/public');
-/**
- * 跳转页面
- */
-router.get('/jump', function(req, res, next) {
-    var obj={
-        'title':'系统跳转',
-        'is_login':funs.is_login(req, res),
-        'msg':'系统跳转'
-    }
-    res.render('public/jump',obj);
-});
 
 /**
  * 注册（页面渲染）
@@ -98,5 +87,17 @@ router.get('/exit',function(req,res,next){
     req.session.destroy();//清除session
     res.redirect("/Public/login");
 })
+
+/**
+ * 跳转页面
+ */
+router.get('/jump', function(req, res, next) {
+    var obj={
+        'title':'系统跳转',
+        'is_login':funs.is_login(req, res),
+        'msg':'系统跳转'
+    }
+    res.render('public/jump',obj);
+});
 
 module.exports = router;

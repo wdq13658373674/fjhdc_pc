@@ -37,7 +37,16 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Global routing landing interception
-var prevent_paths = ['/User','/User/*','/Myproject','/Myproject/*','/Intention','/Intention/*','/Invite','/Invite/*'];
+var prevent_paths = [
+    '/User'
+    ,'/User/*'
+    ,'/Myproject'
+    ,'/Myproject/*'
+    ,'/Intention'
+    ,'/Intention/*'
+    ,'/Invite'
+    ,'/Invite/*'
+];
 prevent_paths.forEach(function(items){
     app.all(items,function(req, res, next){
         var user_id=req.session.user;

@@ -4,6 +4,9 @@ var router = express.Router();
 var Model=require('./../models/servers');
 var data=new Model();
 
+//common fun
+var funs=require('./../models/public');
+
 /**
  * 管理项目-意向报名（页面渲染）
  */
@@ -38,7 +41,13 @@ router.post('/', function(req, res, next) {
 
     data.getModel('project/intentionAdd',params,function(data){
         if(data.code==1){
-            res.send({"数据" : data.desc});
+            // res.send({"数据" : data.desc});
+            var obj={
+                'title':'系统跳转',
+                'is_login':funs.is_login(req, res),
+                'msg':data.desc
+            }
+            res.render('public/jump', obj);
         }else {
             res.send({"数据" : data.desc});
         }

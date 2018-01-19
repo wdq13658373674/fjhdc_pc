@@ -4,7 +4,7 @@ var router = express.Router();
 var Model=require('./../models/servers');
 var data=new Model();
 
-//公共方法
+//common fun
 var funs=require('./../models/public');
 
 /**

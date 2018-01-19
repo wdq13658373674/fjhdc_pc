@@ -5,7 +5,7 @@ var Model=require('./../models/servers');
 var data=new Model();
 
 /**
- * 个人中心-推荐客户（页面渲染）
+ * 个人中心-推荐客户（渲染）
  */
 router.get('/', function(req, res, next) {
     var params={
@@ -76,7 +76,6 @@ router.post('/invite_update', function(req, res, next) {
     }
 
     data.getModel('agent_invite/inviteEdit',params,function(data){
-        console.log(datas);
         if(data.code==1 && data.errcode==0){
             res.send({'数据返回':data.desc});
         }else {

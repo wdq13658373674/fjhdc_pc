@@ -8,7 +8,7 @@ var data=new Model();
 var funs=require('./../models/public');
 
 /**
- * 个人中心（页面渲染）
+ * 个人中心（渲染）
  */
 router.get('/', function(req, res, next) {
     var params={
@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 });
 
 /**
- * 个人中心-个人资料（页面渲染）
+ * 个人中心-个人资料（渲染）
  */
 router.get('/message', function(req, res, next) {
     var params={
@@ -37,7 +37,11 @@ router.get('/message', function(req, res, next) {
     }
 
     data.getModel('user_member/index',params,function(data){
-        if(data.code==1 && data.errcode==0){
+        if(data.code==1){
+            console.log(data);
+            if(data.ret.birthday == null){
+                data.ret.birthday=funs.now_time(false);
+            }
             var obj={
                 data:data.ret,
                 title: '个人资料',
