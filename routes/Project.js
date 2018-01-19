@@ -29,9 +29,12 @@ router.get('/', function(req, res, next) {
  */
 router.get('/detail', function(req, res, next) {
     var flag=funs.is_login(req, res);
-    var pid=req.query.id;
 
-    data.getModel('project/ProjectDetails',{project_id:pid},function(data){
+    var params={
+        project_id:req.query.id
+    }
+
+    data.getModel('project/ProjectDetails',params,function(data){
         if(data.code==1){
             var obj={
                 is_login:flag,

@@ -30,6 +30,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('fjhdc'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Global routing landing interception
+var prevent_paths = ['/User','/User/*','/Myproject','/Myproject/*','/Intention','/Intention/*','/Invite','/Invite/*'];
+prevent_paths.forEach(function(items){
+    app.all(items,function(req, res, next){
+        var user_id=req.cookies.user_id;
+
+        if(!user_id){
+            res.redirect("/Public/login");
+        }else {
+            next();
+        }
+    })
+})
+
 app.use('/', Index);
 app.use('/User', User);
 app.use('/Myproject', Myproject);
@@ -37,7 +51,6 @@ app.use('/Invite', Invite);
 app.use('/Project', Project);
 app.use('/Intention', Intention);
 app.use('/Public', Public);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

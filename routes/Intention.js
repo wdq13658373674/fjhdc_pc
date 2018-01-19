@@ -4,19 +4,15 @@ var router = express.Router();
 var Model=require('./../models/servers');
 var data=new Model();
 
-//公共方法
-var funs=require('./../models/public');
-
 /**
- * 管理项目-意向报名
+ * 管理项目-意向报名（页面渲染）
  */
 router.get('/', function(req, res, next) {
-    funs.check_Cookie(req, res);
-    var pid=req.query.id;
+    var params={
+        'project_id':req.query.id
+    }
 
-    data.getModel('project/intention',{
-        'project_id':pid
-    },function(data){
+    data.getModel('project/intention',params,function(data){
         if(data.code==1){
             var obj={
                 project:data.ret.project,
@@ -31,16 +27,16 @@ router.get('/', function(req, res, next) {
 });
 
 /**
- * 管理项目-意向报名-add
+ * 管理项目-意向报名（报名提交）
  */
 router.post('/', function(req, res, next) {
-    var datas={
+    var params={
         'uid':req.cookies.user_id,
         'project_id':req.query.id,
         'mean_id':req.body.money
     }
 
-    data.getModel('project/intentionAdd',datas,function(data){
+    data.getModel('project/intentionAdd',params,function(data){
         if(data.code==1){
             res.send({"数据" : data.desc});
         }else {

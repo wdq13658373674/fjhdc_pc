@@ -1,15 +1,5 @@
 module.exports={
-    /**检查cookie并返回user_id**/
-    check_Cookie:function(req, res){
-        var user_id = req.cookies.user_id;
-        if(user_id == undefined){
-            res.redirect("/Public/login");
-            return false;
-        }else {
-            return user_id;
-        }
-    },
-    /**检查cookie不返回user_id**/
+    /**检查cookie**/
     is_login:function(req, res){
         var uid=req.cookies.user_id;
         if(uid){

@@ -5,14 +5,14 @@ var Model=require('./../models/servers');
 var data=new Model();
 
 /**
- * 个人中心-推荐客户列表
+ * 个人中心-推荐客户（页面渲染）
  */
 router.get('/', function(req, res, next) {
-    var uid=req.cookies.user_id;//获取cookie
+    var params={
+        "uid":req.cookies.user_id
+    }
 
-    data.getModel('agent_invite/index',{
-        "uid":uid
-    },function(data){
+    data.getModel('agent_invite/index',params,function(data){
         if(data.code==1){
             var num=data.ret.length;
             if(num!=0){
@@ -37,20 +37,20 @@ router.get('/', function(req, res, next) {
 });
 
 /**
- * 个人中心-推荐客户增加
+ * 个人中心-推荐客户（添加）
  */
 router.post('/invite_add', function(req, res, next) {
     var uid=req.cookies.user_id//获取cookie
         ,phone=req.body.phone
         ,realname=req.body.realname
 
-    var datas={
+    var params={
         "uid":uid,
         "mobile":phone,
         "invite_real_name":realname
     }
 
-    data.getModel('agent_invite/inviteAdd',datas,function(data){
+    data.getModel('agent_invite/inviteAdd',params,function(data){
         if(data.code==1 && data.errcode==0){
             res.redirect("/Invite");
         }else {
@@ -60,22 +60,22 @@ router.post('/invite_add', function(req, res, next) {
 });
 
 /**
- * 个人中心-推荐客户编辑
+ * 个人中心-推荐客户（编辑）
  */
-router.post('/invite_edit', function(req, res, next) {
+router.post('/invite_update', function(req, res, next) {
     var uid=req.cookies.user_id//获取cookie
         ,phone=req.body.phone
         ,realname=req.body.realname
         ,id=req.body.id
 
-    var datas={
+    var params={
         "id":id,
         "user_id":uid,
         "mobile":phone,
         "invite_real_name":realname
     }
 
-    data.getModel('agent_invite/inviteEdit',datas,function(data){
+    data.getModel('agent_invite/inviteEdit',params,function(data){
         console.log(datas);
         if(data.code==1 && data.errcode==0){
             res.send({'数据返回':data.desc});
@@ -86,7 +86,7 @@ router.post('/invite_edit', function(req, res, next) {
 });
 
 /**
- * 个人中心-推荐客户列表-delete
+ * 个人中心-推荐客户（删除）
  */
 router.post('/invite_del', function(req, res, next) {
     var id=req.body.id;

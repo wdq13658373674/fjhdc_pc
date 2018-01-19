@@ -12,7 +12,6 @@ var funs=require('./../models/public');
  */
 router.get('/', function(req, res, next) {
     var flag=funs.is_login(req, res);
-    console.log(flag);
 
     data.getModel('Project/index',{},function(data){
         var obj={

@@ -18,27 +18,29 @@ router.get('/jump', function(req, res, next) {
 });
 
 /**
- * 注册
+ * 注册（页面渲染）
  */
 router.get('/reg', function(req, res, next) {
     res.render('public/register', {title:'注册'});
 });
-
+/**
+ * 注册（提交）
+ */
 router.post('/reg_post',function (req,res) {
-    var datas={
+    var params={
         "mobile":req.body.phone,
         "password":req.body.password,
         "rpassword":req.body.repassword,
         "verification":req.body.code
     }
 
-    data.getModel('user_register/register',datas,function(data){
+    data.getModel('user_register/register',params,function(data){
         if(data.code==1 && data.errcode==0){
             var uid = data.ret;
             res.cookie("user_id",uid);//设置cookie
             res.redirect("/User");
         }else{
-            res.send({'msg':data.desc});
+            res.send({"code":0,"msg":data.desc});
         }
     });
 });
@@ -48,12 +50,12 @@ router.post('/reg_post',function (req,res) {
  * 获取验证码
  * */
 router.post('/sendVerify',function (req,res) {
-     var datas={
+     var params={
         'mobile' : req.body.phone
         ,'type':req.body.type
      }
 
-    data.getModel('user_member/sendVerify',datas,function(data){
+    data.getModel('user_member/sendVerify',params,function(data){
         console.log(data);
         if(data.code==1){
             res.send({"code":1,"msg":data.desc});
@@ -69,20 +71,22 @@ router.post('/sendVerify',function (req,res) {
 router.get('/login', function(req, res, next) {
     res.render('public/login', { title:'登陆' });
 });
-
+/**
+ * 登陆（提交）
+ */
 router.post('/login_post', function(req, res, next) {
-    var datas={
+    var params={
         "mobile":req.body.phone,
         "password":req.body.password,
     }
 
-    data.getModel('user_login/login',datas,function(data){
+    data.getModel('user_login/login',params,function(data){
         if(data.code==1 && data.errcode==0){
             var uid = data.ret;
             res.cookie("user_id",uid);//设置cookie
             res.redirect("/User");
         }else{
-            res.send({"code":0,"msg":"no"});
+            res.send({"code":0,"msg":data.desc});
         }
     });
 });

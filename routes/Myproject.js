@@ -5,14 +5,14 @@ var Model=require('./../models/servers');
 var data=new Model();
 
 /**
- * 个人中心-参与项目
+ * 个人中心-参与项目（页面渲染）
  */
 router.get('/', function(req, res, next) {
-    var uid=req.cookies.user_id//获取cookie
+    var params={
+        "uid":req.cookies.user_id
+    }
 
-    data.getModel('project_user/index',{
-        "uid":uid
-    },function(data){
+    data.getModel('project_user/index',params,function(data){
         if(data.code==1){
             var obj={
                 data:data.ret,
