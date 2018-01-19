@@ -3,20 +3,25 @@ var router = express.Router();
 
 var Model=require('./../models/servers');
 var data=new Model();
-
+//公共方法
+var funs=require('./../models/public');
 /**
  * 跳转页面
  */
 router.get('/jump', function(req, res, next) {
-    res.render('public/jump', { title:'系统跳转' });
+    var obj={
+        'title':'系统跳转',
+        'is_login':funs.is_login(req, res),
+        'msg':'系统跳转'
+    }
+    res.render('public/jump',obj);
 });
-
 
 /**
  * 注册
  */
 router.get('/reg', function(req, res, next) {
-    res.render('public/register', { title:'注册' });
+    res.render('public/register', {title:'注册'});
 });
 
 router.post('/reg_post',function (req,res) {
@@ -33,7 +38,7 @@ router.post('/reg_post',function (req,res) {
             res.cookie("user_id",uid);//设置cookie
             res.redirect("/User");
         }else{
-            res.send({"code":0,"msg":data.desc});
+            res.send({'msg':data.desc});
         }
     });
 });
@@ -62,7 +67,6 @@ router.post('/sendVerify',function (req,res) {
  * 登陆
  */
 router.get('/login', function(req, res, next) {
-    res.clearCookie('user_id');//清除cookie
     res.render('public/login', { title:'登陆' });
 });
 
@@ -82,5 +86,13 @@ router.post('/login_post', function(req, res, next) {
         }
     });
 });
+
+/**
+ * 清空缓存
+ * */
+router.get('/exit',function(req,res,next){
+    res.clearCookie('user_id',{maxAge: 0});//清除cookie
+    res.redirect("/Public/login");
+})
 
 module.exports = router;

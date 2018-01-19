@@ -4,15 +4,19 @@ var router = express.Router();
 var Model=require('./../models/servers');
 var data=new Model();
 
+//公共方法
+var funs=require('./../models/public');
+
 /**
  * 首页
  */
 router.get('/', function(req, res, next) {
-    data.getModel('Project/index',{},function(data){
-       /* console.log(data);
-        console.log(data.ret);*/
+    var flag=funs.is_login(req, res);
+    console.log(flag);
 
+    data.getModel('Project/index',{},function(data){
         var obj={
+            is_login:flag,
             data:data.ret.data,
             title: '首页',
             menu:"pro"

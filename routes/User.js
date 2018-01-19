@@ -4,19 +4,23 @@ var router = express.Router();
 var Model=require('./../models/servers');
 var data=new Model();
 
+//公共方法
+var funs=require('./../models/public');
+
 /**
  * 个人中心
  */
 router.get('/', function(req, res, next) {
-    var uid=req.cookies.user_id;//获取cookie
+    var uid=funs.check_Cookie(req, res);
 
     data.getModel('user_member/index',{
         "uid":uid
     },function(data){
-        console.log(data);
+        data.ret.last_login_time == '1970-01-01 08:00:00' ? data.ret.last_login_time = funs.now_time(true) : data.ret.last_login_time=data.ret.last_login_time;
 
         if(data.code==1){
             var obj={
+                // last_time:last_time,
                 data:data.ret,
                 title: '个人中心',
                 menu:"index"
@@ -32,7 +36,7 @@ router.get('/', function(req, res, next) {
  * 个人中心-个人资料
  */
 router.get('/message', function(req, res, next) {
-    var uid=req.cookies.user_id;//获取cookie
+    var uid=funs.check_Cookie(req, res);
 
     data.getModel('user_member/index',{
         "uid":uid
@@ -54,7 +58,7 @@ router.get('/message', function(req, res, next) {
  * 个人中心-个人资料 post
  */
 router.post('/message',function(req, res, next){
-    var uid=req.cookies.user_id//获取cookie
+    var uid=funs.check_Cookie(req, res)
         ,nickname=req.body.nickname
         ,sex=parseInt(req.body.sex)
         ,birthday=req.body.birthday
@@ -70,7 +74,6 @@ router.post('/message',function(req, res, next){
 
     data.getModel('user_member/PersonalAdd',datas,function(data){
         if(data.code==1){
-            // res.redirect("/User/message");
             res.send({"code":1,"msg":"yes"});
         }else {
             res.send({"code":0,"msg":"no"});

@@ -70,7 +70,21 @@ var modules = (function (mod){
             ,area: '148px'
         });
     }
+    /**获取当前时间**/
+    mod.nowTime=function(time){
+        var date = new Date();
+        var year = date.getFullYear()
+            ,month = date.getMonth()+1
+            ,day = date.getDate();
 
+        var hour = date.getHours()
+            ,minute = date.getMinutes()
+            ,second = date.getSeconds();
+
+        time == false ? time= year + '-' + month + '-' + day : time =  year + '-' + month + '-' + day + ' ' + hour + ":" + minute + ':' +second;
+
+        return time;
+    }
     return mod;
 })(window);
 

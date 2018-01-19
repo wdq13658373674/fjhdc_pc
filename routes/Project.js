@@ -4,16 +4,22 @@ var router = express.Router();
 var Model=require('./../models/servers');
 var data=new Model();
 
+//公共方法
+var funs=require('./../models/public');
+
 /**
  * 管理项目
  */
 router.get('/', function(req, res, next) {
-    /**
-     * todo list
-     * **/
+    var flag=funs.is_login(req, res);
     data.getModel('Project/index',{},function(data){
         if(data.code==1){
-            res.render('project/index', {data:data.ret.data,title: '首页'});
+            var obj={
+                is_login:flag,
+                data:data.ret.data,
+                title: '首页'
+            };
+            res.render('project/index',obj);
         }
     });
 });
@@ -22,15 +28,16 @@ router.get('/', function(req, res, next) {
  * 管理项目-详情
  */
 router.get('/detail', function(req, res, next) {
-    /**
-     * todo list
-     * **/
+    var flag=funs.is_login(req, res);
     var pid=req.query.id;
 
     data.getModel('project/ProjectDetails',{project_id:pid},function(data){
-        console.log(data);
         if(data.code==1){
-            var obj={data:data.ret,title: '管理项目详情'};
+            var obj={
+                is_login:flag,
+                data:data.ret,
+                title: '管理项目详情'
+            };
             res.render('project/detail',obj);
         }else {
             res.send('数据获取：'+data.desc);

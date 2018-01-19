@@ -29,7 +29,6 @@ router.get('/', function(req, res, next) {
                 title: '推荐客户',
                 menu:"recom"
             }
-            console.log(obj);
             res.render('invite/index',obj);
         }else {
             res.send('数据返回'+data.desc);
@@ -77,8 +76,9 @@ router.post('/invite_edit', function(req, res, next) {
     }
 
     data.getModel('agent_invite/inviteEdit',datas,function(data){
+        console.log(datas);
         if(data.code==1 && data.errcode==0){
-            res.redirect("/Invite");
+            res.send({'数据返回':data.desc});
         }else {
             res.send({'数据返回':data.desc});
         }

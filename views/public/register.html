@@ -37,7 +37,7 @@
             <div class="input-group mt20">
                 <div class="clearfix">
                     <input class="input w189 pull-left required" name="code" type="text" datatype="*" sucmsg=" " autocomplete="off" placeholder="请输入验证码">
-                    <a href="javascript:modules.countDown(300);"  id="send" class="btn-code pull-right" type="button">发送验证码</a>
+                    <a href="javascript:void(0);"  id="send" class="btn-code pull-right" type="button">发送验证码</a>
                 </div>
                 <span class="Validform_checktip"></span>
             </div>
@@ -66,43 +66,51 @@
 <script src="/style/js/addons/Validform_v5.3.2_min.js"></script>
 <script>
     $(function(){
-        /**表单验证**/
-        var form = $("#regForm").Validform({
-            tiptype: 2,
-            label: ".label",
-            showAllError: true,
-        });
-        form.addRule([{
-            ele: ".required:eq(0)",
-            datatype: "m",
-            errormsg:'手机号格式不正确！'
-        },
-            {
-                ele: ".required:eq(1)",
-                datatype: "*6-16"
-            },
-            {
-                ele: ".required:eq(2)",
-                datatype: "*",
-                recheck:'password',
-                errormsg:'两次输入密码不一致'
-            }
-        ]);
-
-        /**短信验证码**/
-        $('#send').click(function(){
-            var self=$(this);
-            var phone=$('input[name="phone"]').val();
-            /**ajax**/
-            $.ajax({
-                type: "POST",
-                url: "/Public/sendVerify",
-                data: {phone:phone,type:1},
-                dataType: "json",
-                success: function(data){
-
-                }
+        layui.use('layer',function(){
+            var layer = layui.layer;
+            /**表单验证**/
+            var form = $("#regForm").Validform({
+                tiptype: 2,
+                label: ".label",
+                showAllError: true,
             });
+            form.addRule([{
+                ele: ".required:eq(0)",
+                datatype: "m",
+                errormsg:'手机号格式不正确！'
+            },
+                {
+                    ele: ".required:eq(1)",
+                    datatype: "*6-16"
+                },
+                {
+                    ele: ".required:eq(2)",
+                    datatype: "*",
+                    recheck:'password',
+                    errormsg:'两次输入密码不一致'
+                }
+            ]);
+
+            /**短信验证码**/
+            $('#send').click(function(){
+                var self=$(this);
+                var phone=$('input[name="phone"]').val();
+                if(phone==''){
+                    layer.alert('请输入手机号码');
+                    return;
+                }
+                modules.countDown(60);
+                /**ajax**/
+                $.ajax({
+                    type: "POST",
+                    url: "/Public/sendVerify",
+                    data: {phone:phone,type:1},
+                    dataType: "json",
+                    success: function(data){
+
+                    }
+                });
+            })
         })
     })
 </script>

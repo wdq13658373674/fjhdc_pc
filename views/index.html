@@ -12,12 +12,12 @@
 <div class="index-head min-width">
   <header class="header min-width">
     <div class="top clearfix">
-      <!--登陆前-->
-      <div class="before pull-right hide">
+      <%if(!is_login){%>
+      <div class="before pull-right">
         <a href="/Public/login">登陆</a>
         <a href="/Public/reg">注册</a>
       </div>
-
+      <%}else{%>
       <!--登陆后-->
       <div class="after pull-right">
         <div class="menu-box">
@@ -32,6 +32,7 @@
           </ul>
         </div>
       </div>
+      <%}%>
     </div>
     <div class="nav clearfix">
       <a href="/" class="pull-left">
@@ -102,44 +103,6 @@
   </div>
 
   <div class="project-list">
-    <!--<div class="project">
-      <a href="/Project/detail?id=1" class="link clearfix">
-        <div class="img pull-left"><img src="/style/images/test/house.jpg" alt=""></div>
-
-        <div class="content pull-left">
-          <div class="title">邻水县西部新城A-01地块</div>
-
-          <ul class="msg-list clearfix">
-            <li class="item">
-              <div class="tit">地块位置</div>
-              <div class="con">邻水县西部新城三完小旁边</div>
-            </li>
-            <li class="item">
-              <div class="tit">地块编号</div>
-              <div class="con">A-05</div>
-            </li>
-            <li class="item">
-              <div class="tit">地块面积</div>
-              <div class="con">100000 m<sup>2</sup></div>
-            </li>
-            <li class="item">
-              <div class="tit">容积率</div>
-              <div class="con">2.0</div>
-            </li>
-            <li class="item">
-              <div class="tit">绿化率</div>
-              <div class="con">45%</div>
-            </li>
-            <li class="item">
-              <div class="tit">建筑密度</div>
-              <div class="con">55%</div>
-            </li>
-
-          </ul>
-        </div>
-      </a>
-    </div>-->
-
     <% data.forEach(function(items){ %>
     <div class="project">
       <a href="/Project/detail?id=<%= items.id%>" class="link clearfix">
@@ -213,7 +176,6 @@
 <!--header end-->
 <script>
     $(function(){
-
     })
 </script>
 </body>

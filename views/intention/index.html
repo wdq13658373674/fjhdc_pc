@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.html %>
+
+    <!--selfCss start-->
+    <link rel="stylesheet" href="/style/css/project.css">
+    <!--selfCss end-->
+</head>
+<body>
+<!--header start-->
+<%include ../common/uheader.html %>
+<!--header end-->
+
+<div id="project-intention">
+    <div class="crumbs mt40">
+        <a href="#">房计划地产首页 </a> >
+        <a href="#">管理项目 </a> >
+        <a href="#">邻水县西部新城A-01地块 </a> >
+        <span>意向报名 </span>
+    </div>
+
+    <div class="intention-msg">
+        <h1 class="f20 txt-center mt30"><%=project.title%><%=project.land_code%>地块</h1>
+        <div class="horizontal-line"></div>
+        <ul class="msg-list clearfix">
+            <li class="item item1">
+                <div class="tit">预计收益率</div>
+                <div class="con"><%=project.max_ratio%></div>
+            </li>
+            <li class="item item2">
+                <div class="tit">预计项目总投资（元）</div>
+                <div class="con"><%=project.max_amount%></div>
+            </li>
+        </ul>
+    </div>
+
+    <h1 class="f16 txt-center mt40">选择入股金额（元）</h1>
+
+    <form action="" method="post">
+        <div class="intention-money">
+            <div class="money-box clearfix">
+                <%amount.forEach(function(items){%>
+                <label class="check-label">
+                    <input class="check-input" type="radio" name="money" value="<%=items.id%>">
+                    <div class="money"><%=items.amount%></div>
+                </label>
+                <%})%>
+            </div>
+        </div>
+
+        <button class="btn" type="submit">确认</button>
+    </form>
+</div>
+
+<!--footer start-->
+<%include ../common/footer.html %>
+<!--footer end-->
+<script>
+    $(function(){
+
+    })
+</script>
+</body>
+</html>

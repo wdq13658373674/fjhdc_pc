@@ -11,7 +11,7 @@ var User = require('./routes/User');
 var Myproject = require('./routes/Myproject');
 var Invite = require('./routes/Invite');
 var Project = require('./routes/Project');
-var Signup = require('./routes/Signup');
+var Intention = require('./routes/Intention');
 var Public = require('./routes/Public');
 
 var app = express();
@@ -35,7 +35,7 @@ app.use('/User', User);
 app.use('/Myproject', Myproject);
 app.use('/Invite', Invite);
 app.use('/Project', Project);
-app.use('/Signup', Signup);
+app.use('/Intention', Intention);
 app.use('/Public', Public);
 
 
