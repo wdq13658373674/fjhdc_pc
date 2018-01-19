@@ -1,7 +1,7 @@
 module.exports={
     /**检查cookie**/
     is_login:function(req, res){
-        var uid=req.cookies.user_id;
+        var uid=req.session.user;
         if(uid){
             return true;
         }

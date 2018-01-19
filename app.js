@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var ejs=require('ejs');
 
@@ -28,13 +29,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('fjhdc'));
+app.use(session({
+    secret: 'fjhdc',
+    resave: true,
+    saveUninitialized:true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Global routing landing interception
 var prevent_paths = ['/User','/User/*','/Myproject','/Myproject/*','/Intention','/Intention/*','/Invite','/Invite/*'];
 prevent_paths.forEach(function(items){
     app.all(items,function(req, res, next){
-        var user_id=req.cookies.user_id;
+        var user_id=req.session.user;
 
         if(!user_id){
             res.redirect("/Public/login");

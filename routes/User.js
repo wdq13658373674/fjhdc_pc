@@ -12,7 +12,7 @@ var funs=require('./../models/public');
  */
 router.get('/', function(req, res, next) {
     var params={
-        "uid":req.cookies.user_id
+        "uid":req.session.user
     }
     data.getModel('user_member/index',params,function(data){
         data.ret.last_login_time == '1970-01-01 08:00:00' ? data.ret.last_login_time = funs.now_time(true) : data.ret.last_login_time=data.ret.last_login_time;
@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
  */
 router.get('/message', function(req, res, next) {
     var params={
-        "uid":req.cookies.user_id
+        "uid":req.session.user
     }
 
     data.getModel('user_member/index',params,function(data){
@@ -52,7 +52,7 @@ router.get('/message', function(req, res, next) {
  * 个人中心-个人资料 (修改)
  */
 router.post('/message_update',function(req, res, next){
-    var uid=req.cookies.user_id
+    var uid=req.session.user
         ,nickname=req.body.nickname
         ,sex=parseInt(req.body.sex)
         ,birthday=req.body.birthday

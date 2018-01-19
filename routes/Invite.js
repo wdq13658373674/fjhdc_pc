@@ -9,7 +9,7 @@ var data=new Model();
  */
 router.get('/', function(req, res, next) {
     var params={
-        "uid":req.cookies.user_id
+        "uid":req.session.user
     }
 
     data.getModel('agent_invite/index',params,function(data){
@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
  * 个人中心-推荐客户（添加）
  */
 router.post('/invite_add', function(req, res, next) {
-    var uid=req.cookies.user_id//获取cookie
+    var uid=req.session.user//获取cookie
         ,phone=req.body.phone
         ,realname=req.body.realname
 
@@ -63,7 +63,7 @@ router.post('/invite_add', function(req, res, next) {
  * 个人中心-推荐客户（编辑）
  */
 router.post('/invite_update', function(req, res, next) {
-    var uid=req.cookies.user_id//获取cookie
+    var uid=req.session.user//获取cookie
         ,phone=req.body.phone
         ,realname=req.body.realname
         ,id=req.body.id

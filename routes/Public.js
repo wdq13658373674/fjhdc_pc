@@ -37,7 +37,7 @@ router.post('/reg_post',function (req,res) {
     data.getModel('user_register/register',params,function(data){
         if(data.code==1 && data.errcode==0){
             var uid = data.ret;
-            res.cookie("user_id",uid);//设置cookie
+            req.session.user=uid;//设置session
             res.redirect("/User");
         }else{
             res.send({"code":0,"msg":data.desc});
@@ -83,7 +83,7 @@ router.post('/login_post', function(req, res, next) {
     data.getModel('user_login/login',params,function(data){
         if(data.code==1 && data.errcode==0){
             var uid = data.ret;
-            res.cookie("user_id",uid);//设置cookie
+            req.session.user=uid;//设置session
             res.redirect("/User");
         }else{
             res.send({"code":0,"msg":data.desc});
@@ -95,7 +95,7 @@ router.post('/login_post', function(req, res, next) {
  * 清空缓存
  * */
 router.get('/exit',function(req,res,next){
-    res.clearCookie('user_id',{maxAge: 0});//清除cookie
+    req.session.destroy();//清除session
     res.redirect("/Public/login");
 })
 

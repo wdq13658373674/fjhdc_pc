@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
  */
 router.post('/', function(req, res, next) {
     var params={
-        'uid':req.cookies.user_id,
+        'uid':req.session.user,
         'project_id':req.query.id,
         'mean_id':req.body.money
     }

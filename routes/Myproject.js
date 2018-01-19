@@ -9,7 +9,7 @@ var data=new Model();
  */
 router.get('/', function(req, res, next) {
     var params={
-        "uid":req.cookies.user_id
+        "uid":req.session.user
     }
 
     data.getModel('project_user/index',params,function(data){
