@@ -96,12 +96,9 @@
                 var self=$(this);
                 var phone=$('input[name="phone"]').val();
 
-                if(phone==''){
-                    layer.alert('请输入手机号码');
-                    return;
-                }else if(!modules.is_mobile(phone)){
-                    layer.alert('手机号码格式不正确！');
-                    return;
+                if(!modules.is_mobile(phone)){
+                    layer.alert('请填写有效的11位手机号!');
+                    return false;
                 }
                 modules.countDown(60);
                 /**ajax**/
