@@ -12,12 +12,15 @@ var funs=require('./../models/public');
  */
 router.get('/', function(req, res, next) {
     var flag=funs.is_login(req, res);
-    data.getModel('Project/index',{},function(data){
+    var page=req.query.page;
+
+    data.getModel('project/index/page/'+page,{},function(data){
         if(data.code==1){
             var obj={
                 is_login:flag,
-                data:data.ret.data,
-                title: '首页'
+                data:data.ret,
+                title: '管理项目',
+                menu:"pro"
             };
             res.render('project/index',obj);
         }
@@ -35,11 +38,13 @@ router.get('/detail', function(req, res, next) {
     }
 
     data.getModel('project/ProjectDetails',params,function(data){
+        console.log(data);
         if(data.code==1){
             var obj={
                 is_login:flag,
                 data:data.ret,
-                title: '管理项目详情'
+                title: '管理项目详情',
+                menu:"pro"
             };
             res.render('project/detail',obj);
         }else {

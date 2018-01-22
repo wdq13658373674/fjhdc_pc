@@ -4,8 +4,7 @@
     <%include ../common/head.html %>
 
     <!--selfCss start-->
-    <link rel="stylesheet" href="/style/js/addons/swiper/swiper.min.css">
-    <link rel="stylesheet" href="/style/css/project.css">
+    <link rel="stylesheet" href="/style/css/index.css">
     <!--selfCss end-->
 </head>
 <body>
@@ -13,49 +12,96 @@
 <%include ../common/header.html %>
 <!--header end-->
 
-<div>暂无</div>
+<div class="index-projects min-width" style="padding-top: 145px;">
+
+    <div class="index-title2">
+        <div class="content">
+            <h1 class="con f20">管理项目</h1>
+            <h2 class="f10">MANAGE PROJECT</h2>
+        </div>
+    </div>
+
+    <div class="project-list">
+        <% data.data.forEach(function(items){ %>
+        <div class="project">
+            <a href="/Project/detail?id=<%= items.id%>" class="link clearfix">
+                <div class="img pull-left"><img src="http://res.2.fjhok.com/res/image/<%=items.cover%>" alt=""></div>
+
+                <div class="content pull-left">
+                    <div class="title"><%=items.title%></div>
+
+                    <ul class="msg-list clearfix">
+                        <li class="item">
+                            <div class="tit">地块位置</div>
+                            <div class="con"><%=items.address%></div>
+                        </li>
+                        <li class="item">
+                            <div class="tit">地块编号</div>
+                            <div class="con"><%=items.land_code%></div>
+                        </li>
+                        <li class="item">
+                            <div class="tit">地块面积</div>
+                            <div class="con"><%=items.land_area%> m<sup>2</sup></div>
+                        </li>
+                        <li class="item">
+                            <div class="tit">容积率</div>
+                            <div class="con"><%=items.ratio%></div>
+                        </li>
+                        <li class="item">
+                            <div class="tit">绿化率</div>
+                            <div class="con"><%=items.green%></div>
+                        </li>
+                        <li class="item">
+                            <div class="tit">建筑密度</div>
+                            <div class="con"><%=items.built_density%>%</div>
+                        </li>
+
+                    </ul>
+                </div>
+            </a>
+        </div>
+        <% }) %>
+
+        <!--页码-->
+        <%if(data.total>1){%>
+        <div class="page-box mt60">
+            <div id="page"></div>
+        </div>
+        <%}%>
+    </div>
+</div>
 
 <!--footer start-->
 <%include ../common/footer.html %>
 <!--footer end-->
 
-<script src="/style/js/addons/swiper/swiper.min.js"></script>
+<script src="/style/js/addons/layui/layui.js"></script>
 <script>
     $(function(){
-        /**flash**/
-        var galleryTop = new Swiper('.gallery-top', {
-            spaceBetween: 10,
-            loop:true,
-            loopedSlides: 5,
+        /**分页**/
+        layui.use('laypage', function(){
+            var laypage = layui.laypage;
+            laypage.render({
+                elem: 'page'
+                ,count: '<%=data.total%>'
+                ,limit:'<%=data.per_page%>'
+                ,groups:10
+                ,prev: '<em> < </em>'
+                ,next: '<em> > </em>'
+                ,theme: 'own'
+                ,last: '尾页'
+                ,jump: function(obj, first){
+                    var cur = obj.curr;
+                    if(!first){
+                        $.get('/Project',{
+                            'page':cur
+                        },function(data){
 
+                        })
+                    }
+                }
+            });
         });
-        var galleryThumbs = new Swiper('.gallery-thumbs', {
-            spaceBetween: 16,
-            slidesPerView: 4,
-            touchRatio: 0.2,
-            loop: true,
-            loopedSlides: 5,
-            slidesOffsetBefore : 43,
-            slideToClickedSlide: true,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-        galleryTop.controller.control = galleryThumbs;
-        galleryThumbs.controller.control = galleryTop;
-
-        /**tab切换**/
-        $('#project-tab>.item').click(function(){
-            var self = $(this)
-                ,inx=self.index();
-            var tabBox = $('.tab-box');
-            self.addClass('active').siblings('.item').removeClass('active');
-
-
-            tabBox.removeClass('active');
-            tabBox.eq(inx).addClass('active');
-        })
     })
 </script>
 </body>

@@ -79,36 +79,16 @@
                         </ul>
                     </div>
                 </a>
-                <!--<div class="page-box mt60">-->
-                    <!--<div id="page"></div>-->
-                <!--</div>-->
                 <%})}%>
-
             </div>
         </div>
         <!--user-content end-->
     </div>
 </div>
 
-<script src="/style/js/addons/layui/layui.js"></script>
 <script>
     $(function(){
 
-        /**分页**/
-        layui.use('laypage', function(){
-            var laypage = layui.laypage;
-
-            laypage.render({
-                elem: 'page'
-                ,count: 60
-                ,limit:4
-                ,groups:10
-                ,prev: '<em> < </em>'
-                ,next: '<em> > </em>'
-                ,theme: 'own'
-                ,last: '尾页'
-            });
-        });
     })
 </script>
 </body>

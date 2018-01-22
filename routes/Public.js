@@ -96,7 +96,8 @@ router.get('/jump', function(req, res, next) {
     var obj={
         'title':'系统跳转',
         'is_login':funs.is_login(req, res),
-        'msg':'系统跳转'
+        'msg':'系统跳转',
+        'menu':"pro"
     }
     res.render('public/jump',obj);
 });

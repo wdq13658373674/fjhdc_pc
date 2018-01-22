@@ -18,10 +18,11 @@ router.get('/', function(req, res, next) {
             is_login:flag,
             data:data.ret.data,
             title: '首页',
-            menu:"pro"
+            menu:"index"
         }
 
         if(data.code==1){
+            console.log(data);
             res.render('index', obj);
         }else {
             res.send('数据获取：'+data.desc);

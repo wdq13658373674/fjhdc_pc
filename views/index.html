@@ -99,14 +99,14 @@
   </div>
 
   <div class="link-more clearfix  ">
-    <a class="pull-right" href="#">查看更多</a>
+    <a class="pull-right" href="/Project">查看更多</a>
   </div>
 
   <div class="project-list">
     <% data.forEach(function(items){ %>
     <div class="project">
       <a href="/Project/detail?id=<%= items.id%>" class="link clearfix">
-        <div class="img pull-left"><img src="/style/images/test/house.jpg" alt=""></div>
+        <div class="img pull-left"><img src="http://res.2.fjhok.com/res/image/<%=items.cover%>" alt=""></div>
 
         <div class="content pull-left">
           <div class="title"><%=items.title%></div>
