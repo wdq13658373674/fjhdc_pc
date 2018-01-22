@@ -88,15 +88,16 @@ router.post('/invite_update', function(req, res, next) {
  * 个人中心-推荐客户（删除）
  */
 router.post('/invite_del', function(req, res, next) {
-    var id=req.body.id;
+    var params={
+        id:req.body.id
+    }
 
-    data.getModel('agent_invite/inviteDel',{
-        "id":id
-    },function(data){
+    data.getModel('agent_invite/inviteDel',params,function(data){
         if(data.code==1){
-            res.send({"code":1,"msg":"ok"});
+            res.send({"code":1,"msg":data.desc});
         }else {
-            res.send({"code":0,"msg":"no"});
+            console.log(data);
+            res.send({"code":0,"msg":data.desc});
         }
     });
 });

@@ -118,8 +118,11 @@
                 callback:function(data){
                     if(data.code==1){
                         layer.msg(' 修改成功！');
+                        setTimeout(function(){
+                            window.location.reload();
+                        },1000);
                     }else {
-                        layer.msg(data.msg);
+                        layer.msg('你没有进行修改！');
                     }
                 }
             });
