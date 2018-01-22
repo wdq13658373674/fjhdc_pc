@@ -117,7 +117,12 @@
                     type: "POST",
                     url: "/Public/sendVerify",
                     data: {phone:phone,type:1},
-                    dataType: "json"
+                    dataType: "json",
+                    success:function(data){
+                        if(data.code==1){
+                            layer.alert(data.code_num);
+                        }
+                    }
                 });
             })
         })

@@ -46,9 +46,9 @@ router.post('/sendVerify',function (req,res) {
      }
 
     data.getModel('user_member/sendVerify',params,function(data){
-        console.log(data);
+        var code_num=data.ret.content.slice(21,27);
         if(data.code==1){
-            res.send({"code":1,"msg":data.desc});
+            res.send({"code":1,"msg":data.desc,code_num:code_num});
         }else{
             res.send({"code":0,"msg":data.desc});
         }
