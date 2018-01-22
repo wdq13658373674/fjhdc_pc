@@ -37,28 +37,37 @@
 
     <h1 class="f16 txt-center mt40">选择入股金额（元）</h1>
 
-    <form action="" method="post">
+    <form id="intentionForm" action="" method="post">
         <div class="intention-money">
             <div class="money-box clearfix">
                 <%amount.forEach(function(items){%>
                 <label class="check-label">
-                    <input class="check-input" type="radio" name="money" value="<%=items.id%>">
+                    <input class="check-input" datatype="*" sucmsg=" " type="radio" name="money" value="<%=items.id%>">
                     <div class="money"><%=items.amount%></div>
                 </label>
                 <%})%>
             </div>
+            <span class="Validform_checktip err-tip"></span>
         </div>
 
-        <button class="btn" type="submit">确认</button>
+        <button id="intention" class="btn" type="submit">确认</button>
     </form>
 </div>
 
 <!--footer start-->
 <%include ../common/footer.html %>
 <!--footer end-->
+<script src="/style/js/addons/Validform_v5.3.2_min.js"></script>
 <script>
     $(function(){
-
+        var form = $("#intentionForm").Validform({
+            showAllError: true,
+            tiptype:function(msg,o,cssctl){
+                var objtip=$(".err-tip");
+                cssctl(objtip,o.type);
+                objtip.text(msg);
+            }
+        });
     })
 </script>
 </body>

@@ -52,9 +52,9 @@ router.post('/invite_add', function(req, res, next) {
 
     data.getModel('agent_invite/inviteAdd',params,function(data){
         if(data.code==1 && data.errcode==0){
-            res.redirect("/Invite");
+            res.send({code:1,msg:data.desc});
         }else {
-            res.send({'数据返回':data.desc});
+            res.send({code:0,msg:data.desc});
         }
     });
 });
@@ -77,9 +77,9 @@ router.post('/invite_update', function(req, res, next) {
 
     data.getModel('agent_invite/inviteEdit',params,function(data){
         if(data.code==1 && data.errcode==0){
-            res.send({'数据返回':data.desc});
+            res.send({code:1,msg:data.desc});
         }else {
-            res.send({'数据返回':data.desc});
+            res.send({code:0,msg:data.desc});
         }
     });
 });

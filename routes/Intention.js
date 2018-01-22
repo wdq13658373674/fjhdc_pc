@@ -54,7 +54,7 @@ router.post('/', function(req, res, next) {
             }
             res.render('public/jump', obj);
         }else {
-            res.send({"数据" : data.desc});
+            res.send({code:0,msg:data.desc});
         }
     });
 });

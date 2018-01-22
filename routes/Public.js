@@ -27,7 +27,8 @@ router.post('/reg_post',function (req,res) {
         if(data.code==1 && data.errcode==0){
             var uid = data.ret;
             req.session.user=uid;//设置session
-            res.redirect("/User");
+
+            res.send({"code":1,"msg":data.desc});
         }else{
             res.send({"code":0,"msg":data.desc});
         }
@@ -73,7 +74,7 @@ router.post('/login_post', function(req, res, next) {
         if(data.code==1 && data.errcode==0){
             var uid = data.ret;
             req.session.user=uid;//设置session
-            res.redirect("/User");
+            res.send({"code":1,"msg":data.desc});
         }else{
             res.send({"code":0,"msg":data.desc});
         }

@@ -93,7 +93,7 @@
 
                     <div class="user-hr mt40"></div>
 
-                    <button type="submit" class="btn-rec">保存</button>
+                    <button id="save" type="submit" class="btn-rec">保存</button>
                 </form>
             </div>
         </div>
@@ -105,42 +105,55 @@
 <script src="/style/js/addons/Validform_v5.3.2_min.js"></script>
 <script>
     $(function(){
-        /**表单验证*/
-        var form = $("#msgForm").Validform({
-            label: ".label",
-            tiptype: 3,
-            showAllError: true,
-        });
-        form.addRule([{
-            ele: ".required:eq(0)",
-            datatype: "*"
-        },
-            {
-                ele: ".required:eq(1)",
+        layui.use('layer',function(){
+            var layer=layui.layer;
+
+            /**表单验证*/
+            var form = $("#msgForm").Validform({
+                label: ".label",
+                tiptype: 3,
+                showAllError: true,
+                ajaxPost:true,
+                btnSubmit:'#save',
+                callback:function(data){
+                    if(data.code==1){
+                        layer.msg(' 修改成功！');
+                    }else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+            form.addRule([{
+                ele: ".required:eq(0)",
                 datatype: "*"
             },
-            {
-                ele: ".required:eq(2)",
-                datatype: "*",
-            },
-            {
-                ele: ".required:eq(3)",
-                datatype: "*",
-            },
-            {
-                ele: ".required:eq(3)",
-                datatype: "*",
-            }
-        ]);
+                {
+                    ele: ".required:eq(1)",
+                    datatype: "*"
+                },
+                {
+                    ele: ".required:eq(2)",
+                    datatype: "*",
+                },
+                {
+                    ele: ".required:eq(3)",
+                    datatype: "*",
+                },
+                {
+                    ele: ".required:eq(3)",
+                    datatype: "*",
+                }
+            ]);
 
-        /**日期控件**/
-        layui.use('laydate', function(){
-            var laydate = layui.laydate;
+            /**日期控件**/
+            layui.use('laydate', function(){
+                var laydate = layui.laydate;
 
-            laydate.render({
-                elem: '#date' //指定元素
+                laydate.render({
+                    elem: '#date' //指定元素
+                });
             });
-        });
+        })
     })
 </script>
 </body>

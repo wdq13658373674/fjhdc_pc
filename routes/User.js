@@ -71,9 +71,9 @@ router.post('/message_update',function(req, res, next){
 
     data.getModel('user_member/PersonalAdd',datas,function(data){
         if(data.code==1){
-            res.send({"数据":data.desc});
+            res.send({code:1,msg:data.desc});
         }else {
-            res.send({"数据":data.desc});
+            res.send({code:0,msg:data.desc});
         }
     });
 })

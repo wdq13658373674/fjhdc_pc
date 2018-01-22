@@ -42,7 +42,7 @@
                         <span class="Validform_checktip ml20"></span>
                     </div>
 
-                    <button class="btn-rec">我要推荐</button>
+                    <button id="recommend" class="btn-rec">我要推荐</button>
                 </form>
 
                 <div class="user-hr mt40"></div>
@@ -88,15 +88,17 @@
         <div class="input-group">
             <label class="yellow">推荐人姓名</label>
             <input class="input required2" sucmsg=" " name="realname" type="text" placeholder="请输入推荐人姓名" value="">
+            <span class="Validform_checktip" style="margin-left:85px;"></span>
         </div>
 
         <div class="input-group mt30">
             <label class="yellow">推荐人电话</label>
             <input class="input required2" sucmsg=" " name="phone" type="text" placeholder="请输入推荐人电话">
+            <span class="Validform_checktip" style="margin-left:85px;"></span>
         </div>
         <input class="input" type="hidden" name="id" value="">
         <div class="err-tip center mt20" style="width:332px;margin-left:85px;"></div>
-        <button type="submit" class="btn-sure">确定</button>
+        <button id="edit" type="submit" class="btn-sure">确定</button>
     </form>
 </div>
 <!--编辑弹窗 end-->
@@ -106,46 +108,56 @@
 
 <script>
     $(function(){
-        /**表单验证*/
-        var form = $("#remForm").Validform({
-            tiptype: 3,
-            label: ".label",
-            showAllError: true,
-        });
-
-        form.addRule([{
-            ele: ".required:eq(0)",
-            datatype: "*",
-        },
-            {
-                ele: ".required:eq(1)",
-                datatype: "m",
-                errormsg:'手机号格式不正确！'
-            }
-        ]);
-
         /**提示层**/
-        layui.use('layer', function(){
+        layui.use('layer', function () {
             var layer = layui.layer;
+            /**表单验证*/
+            var form = $("#remForm").Validform({
+                tiptype: 3,
+                label: ".label",
+                showAllError: true,
+                ajaxPost: true,
+                btnSubmit: '#recommend',
+                callback: function (data) {
+                    if (data.code == 1) {
+                        layer.msg(' 推荐成功！');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500);
+                    } else {
+                        layer.alert(data.msg);
+                    }
+                }
+            });
+            form.addRule([{
+                ele: ".required:eq(0)",
+                datatype: "*",
+            },
+                {
+                    ele: ".required:eq(1)",
+                    datatype: "m",
+                    errormsg: '手机号格式不正确！'
+                }
+            ]);
 
             /**编辑提示层**/
             var prompt_html = $('.prompt').html();
-            $('.table').on('click','.edit',function () {
-                var self=$(this)
-                    ,parents=self.parents('tr');
-                var tds=parents.find('td')
-                    ,name=tds.eq(0).text()
-                    ,phone=tds.eq(1).text()
-                    ,id=parents.data("id");
+            $('.table').on('click', '.edit', function () {
+                var self = $(this)
+                    , parents = self.parents('tr');
+                var tds = parents.find('td')
+                    , name = tds.eq(0).text()
+                    , phone = tds.eq(1).text()
+                    , id = parents.data("id");
 
-                if(prompt_html){
+                if (prompt_html) {
                     $('.prompt').remove();
                     modules.modal({
-                        content:prompt_html
-                        ,offset: 'auto'
-                        ,area: '575px'
-                        ,btn: 0
-                        ,id:'prompt'
+                        content: prompt_html
+                        , offset: 'auto'
+                        , area: '575px'
+                        , btn: 0
+                        , id: 'prompt'
                     });
                     var inputs = $('.prompt-form .input');
                     inputs.eq(0).val(name);
@@ -156,29 +168,28 @@
             })
 
             /**删除提示层**/
-            $('.table').on('click','.del',function () {
+            $('.table').on('click', '.del', function () {
                 var self = $(this)
-                    ,parents=self.parents('tr');
-                var id=parents.data('id');
+                    , parents = self.parents('tr');
+                var id = parents.data('id');
 
                 modules.modal({
-                    content:'<div class="mod-del">确定删除此推荐人</div>'
-                    ,area: '518px'
-                    ,yes: function(index, layero){
+                    content: '<div class="mod-del">确定删除此推荐人</div>'
+                    , area: '518px'
+                    , yes: function (index, layero) {
                         /**ajax**/
                         $.ajax({
                             type: "POST",
                             url: "/Invite/invite_del",
-                            data: {id:id},
+                            data: {id: id},
                             dataType: "json",
-                            success: function(data){
-                                if(data.code==1){
-                                    layer.alert("删除成功",function (inx) {
-                                        layer.closeAll();
-                                        self.parents('tr').remove();
-                                        location.reload();
-                                    });
-                                }else{
+                            success: function (data) {
+                                if (data.code == 1) {
+                                    layer.msg("删除成功！");
+                                    setTimeout(function () {
+                                        window.location.reload();
+                                    }, 1500);
+                                } else {
                                     layer.alert("删除失败");
                                 }
                             }
@@ -190,13 +201,21 @@
 
             /**弹出层表单验证*/
             function checkForm() {
-                var form2=$("#promptForm").Validform({
+                var form2 = $("#promptForm").Validform({
+                    tiptype: 3,
                     label: ".yellow",
                     showAllError: true,
-                    tiptype:function(msg,o,cssctl){
-                        var objtip=$(".err-tip");
-                        cssctl(objtip,o.type);
-                        objtip.text(msg);
+                    ajaxPost: true,
+                    btnSubmit: '#edit',
+                    callback: function (data) {
+                        if (data.code == 1) {
+                            layer.msg(' 修改成功！');
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1500);
+                        } else {
+                            layer.alert(data.msg);
+                        }
                     }
                 });
 
@@ -207,7 +226,7 @@
                     {
                         ele: ".required2:eq(1)",
                         datatype: "m",
-                        errormsg:'手机号格式不正确！'
+                        errormsg: '手机号格式不正确！'
                     }
                 ]);
             }
