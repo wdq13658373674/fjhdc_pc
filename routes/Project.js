@@ -12,9 +12,8 @@ var funs=require('./../models/public');
  */
 router.get('/', function(req, res, next) {
     var flag=funs.is_login(req, res);
-    var page=req.query.page;
 
-    data.getModel('project/index/page/'+page,{},function(data){
+    data.getModel('project/index/page/1',{},function(data){
         if(data.code==1){
             var obj={
                 is_login:flag,
@@ -23,6 +22,18 @@ router.get('/', function(req, res, next) {
                 menu:"pro"
             };
             res.render('project/index',obj);
+        }
+    });
+});
+
+router.post('/', function(req, res, next) {
+    var page=req.body.page;
+
+    data.getModel('project/index/page/'+page,{},function(data){
+        if(data.code==1){
+            res.send({code:1,data:data.ret.data});
+        }else {
+            res.send({code:0,data:data.desc});
         }
     });
 });
@@ -38,7 +49,7 @@ router.get('/detail', function(req, res, next) {
     }
 
     data.getModel('project/ProjectDetails',params,function(data){
-        console.log(data);
+        console.log(data.ret);
         if(data.code==1){
             var obj={
                 is_login:flag,
@@ -48,9 +59,10 @@ router.get('/detail', function(req, res, next) {
             };
             res.render('project/detail',obj);
         }else {
-            res.send('数据获取：'+data.desc);
+            res.send({code:0,data:data.desc});
         }
     });
 });
+
 
 module.exports = router;

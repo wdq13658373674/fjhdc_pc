@@ -51,6 +51,7 @@
                 ajaxPost:true,
                 btnSubmit:'#login',
                 callback:function(data){
+                    $.Hidemsg();
                     if(data.code==1){
                         layer.msg(' 登陆成功！');
                         setTimeout(function(){

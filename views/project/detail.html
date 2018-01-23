@@ -5,6 +5,7 @@
 
     <!--selfCss start-->
     <link rel="stylesheet" href="/style/js/addons/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/style/js/addons/layui/css/layui.css">
     <link rel="stylesheet" href="/style/css/project.css">
     <!--selfCss end-->
 </head>
@@ -89,23 +90,62 @@
 </div>
 
 <div id="project-tab" class="mt60">
-    <div class="item active">项目介绍</div>
-    <div class="item">周边配套</div>
+    <div class="item">项目介绍</div>
+    <div class="item active">周边配套</div>
     <div class="item">建设进度</div>
 </div>
 
-<div class="tab-box active">
+<div class="tab-box">
     <div id="project-box1" class="content">
         <%=data.detail_content%>
     </div>
 </div>
 
-<div class="tab-box">
-    <div id="project-box2" class="content">content2</div>
+<div class="tab-box  active">
+    <div id="project-box2" class="content mb60 clearfix">
+        <div class="left-box pull-left">
+            <h1>项目区位图</h1>
+
+            <div class="img-box">
+                <div style="position: relative;">
+                    <img class="img" src="/style/images/test/house.jpg" alt=""/><!--大图路径-->
+
+                    <!--hover效果-->
+                    <a id="map" href="javascript:void(0);" class="dark-mask-box">
+                        <img class="vr-img zoom-img" layer-src="/style/images/test/house.jpg" src="/style/images/icons/zoom_add.png" alt=""/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="right-box pull-right">
+            <h1>位置及周边</h1>
+            <h2>交通</h2>
+            <p>近临邻水西出口，西部新城1号公路、2号公路、3号公路、入城大道环绕四周，真正做到了项目与老城区、 广邻高速的无缝衔接。</p>
+            <h2>购物</h2>
+            <p>新世纪百货、南洋百货、五星级农贸市场、红星美凯龙、苏宁易购等商业配套齐全，满足您的生活购物需求。</p>
+            <h2>教育</h2>
+            <p>机关幼儿园、鼎屏小学、一完小分校、二完小、邻水二中等邻水优质教育资源云集，让孩子享受从幼儿园到中学全龄化优质教育体系。</p>
+        </div>
+    </div>
 </div>
 
 <div class="tab-box">
-    <div id="project-box3" class="content">content3</div>
+    <div id="project-box3" class="content mb60">
+        <!--列表 start-->
+        <ul id="proList" class="pro-list clearfix">
+            <li class="item">
+                <div class="date pull-left">
+                    <p class="year">2016</p>
+
+                    <p class="mon">09-05</p>
+                </div>
+                <div class="tit">
+                    土石方开标
+                </div>
+            </li>
+        </ul>
+        <!--列表 end-->
+    </div>
 </div>
 
 
@@ -114,6 +154,7 @@
 <!--footer end-->
 
 <script src="/style/js/addons/swiper/swiper.min.js"></script>
+<script src="/style/js/addons/layui/layui.js"></script>
 <script>
     $(function(){
         /**flash**/
@@ -149,6 +190,40 @@
 
             tabBox.removeClass('active');
             tabBox.eq(inx).addClass('active');
+        })
+
+        layui.use(['layer', 'flow'],function(){
+            var layer=layui.layer
+                ,flow=layui.flow;
+
+            /**位置周边查看大图**/
+            layer.photos({
+                closeBtn: 1,
+                resize: false,
+                photos: '#map',
+                shift: 5
+            });
+
+            /**下拉加载**/
+            flow.load({
+                elem: '#proList'
+                , end: '哦～！没有更多了'
+                , mb: 100
+                , done: function (page, next) {
+                    //模拟数据插入
+                    setTimeout(function () {
+                        var lis = [];
+                        for (var i = 0; i < 8; i++) {
+                            lis.push('<li class="item">1</li>')
+                        }
+
+                        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                        next(lis.join(''), page < 2); //假设总页数为 2
+                    }, 500);
+                }
+            });
+
         })
     })
 </script>

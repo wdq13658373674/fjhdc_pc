@@ -119,6 +119,7 @@
                 ajaxPost: true,
                 btnSubmit: '#recommend',
                 callback: function (data) {
+                    $.Hidemsg();
                     if (data.code == 1) {
                         layer.msg(' 推荐成功！');
                         setTimeout(function () {
@@ -208,6 +209,7 @@
                     ajaxPost: true,
                     btnSubmit: '#edit',
                     callback: function (data) {
+                        $.Hidemsg();
                         if (data.code == 1) {
                             layer.msg(' 修改成功！');
                             setTimeout(function () {

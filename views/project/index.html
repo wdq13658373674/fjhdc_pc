@@ -61,14 +61,13 @@
             </a>
         </div>
         <% }) %>
-
-        <!--页码-->
-        <%if(data.total>1){%>
-        <div class="page-box mt60">
-            <div id="page"></div>
-        </div>
-        <%}%>
     </div>
+    <!--页码-->
+    <%if(data.total>1){%>
+    <div class="page-box mt60">
+        <div id="page"></div>
+    </div>
+    <%}%>
 </div>
 
 <!--footer start-->
@@ -93,10 +92,54 @@
                 ,jump: function(obj, first){
                     var cur = obj.curr;
                     if(!first){
-                        $.get('/Project',{
+                        $.post('/Project',{
                             'page':cur
                         },function(data){
+                            var html='';
+                            if(data.code==1){
+                                var projects=data.data;
+                                projects.forEach(function(items){
+                                    html+='<div class="project">'+
+                                        '<a href="#" class="link clearfix">\n' +
+                                        '                <div class="img pull-left"><img src="+items.cover+" alt=""></div>\n' +
+                                        '\n' +
+                                        '                <div class="content pull-left">\n' +
+                                        '                    <div class="title">'+items.title+'</div>\n' +
+                                        '\n' +
+                                        '                    <ul class="msg-list clearfix">\n' +
+                                        '                        <li class="item">\n' +
+                                        '                            <div class="tit">地块位置</div>\n' +
+                                        '                            <div class="con">'+items.address+'</div>\n' +
+                                        '                        </li>\n' +
+                                        '                        <li class="item">\n' +
+                                        '                            <div class="tit">地块编号</div>\n' +
+                                        '                            <div class="con">'+items.land_code+'</div>\n' +
+                                        '                        </li>\n' +
+                                        '                        <li class="item">\n' +
+                                        '                            <div class="tit">地块面积</div>\n' +
+                                        '                            <div class="con">'+items.land_area+' m<sup>2</sup></div>\n' +
+                                        '                        </li>\n' +
+                                        '                        <li class="item">\n' +
+                                        '                            <div class="tit">容积率</div>\n' +
+                                        '                            <div class="con">'+items.ratio+'</div>\n' +
+                                        '                        </li>\n' +
+                                        '                        <li class="item">\n' +
+                                        '                            <div class="tit">绿化率</div>\n' +
+                                        '                            <div class="con">'+items.green+'</div>\n' +
+                                        '                        </li>\n' +
+                                        '                        <li class="item">\n' +
+                                        '                            <div class="tit">建筑密度</div>\n' +
+                                        '                            <div class="con">'+items.built_density+'</div>\n' +
+                                        '                        </li>\n' +
+                                        '\n' +
+                                        '                    </ul>\n' +
+                                        '                </div>\n' +
+                                        '            </a>'+
+                                            '</div>'
+                                })
 
+                                $('.project-list').html(html);
+                            }
                         })
                     }
                 }
