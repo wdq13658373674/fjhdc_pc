@@ -22,11 +22,15 @@ router.get('/', function(req, res, next) {
                 menu:"pro"
             };
             res.render('project/index',obj);
+        }else {
+            res.send({code:0,data:data.desc});
         }
     });
 });
-
-router.post('/', function(req, res, next) {
+/**
+ * 管理项目-分页请求
+ */
+router.post('/page_post', function(req, res, next) {
     var page=req.body.page;
 
     data.getModel('project/index/page/'+page,{},function(data){
@@ -49,7 +53,6 @@ router.get('/detail', function(req, res, next) {
     }
 
     data.getModel('project/ProjectDetails',params,function(data){
-        console.log(data.ret);
         if(data.code==1){
             var obj={
                 is_login:flag,
@@ -64,5 +67,23 @@ router.get('/detail', function(req, res, next) {
     });
 });
 
+/**
+ * 管理项目-建设进度-详情
+ */
+router.post('/schedule', function(req, res, next) {
+    var params={
+        pid:req.body.pid,
+        project_id:req.body.project_id
+    }
+
+    data.getModel('project/schedule',params,function(data){
+        console.log(data.ret);
+        if(data.code==1){
+            res.send({code:1,data:data.desc});
+        }else {
+            res.send({code:0,data:data.desc});
+        }
+    });
+});
 
 module.exports = router;

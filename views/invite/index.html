@@ -108,7 +108,6 @@
 
 <script>
     $(function(){
-        /**提示层**/
         layui.use('layer', function () {
             var layer = layui.layer;
             /**表单验证*/
@@ -140,33 +139,6 @@
                     errormsg: '手机号格式不正确！'
                 }
             ]);
-
-            /**编辑提示层**/
-            var prompt_html = $('.prompt').html();
-            $('.table').on('click', '.edit', function () {
-                var self = $(this)
-                    , parents = self.parents('tr');
-                var tds = parents.find('td')
-                    , name = tds.eq(0).text()
-                    , phone = tds.eq(1).text()
-                    , id = parents.data("id");
-
-                if (prompt_html) {
-                    $('.prompt').remove();
-                    modules.modal({
-                        content: prompt_html
-                        , offset: 'auto'
-                        , area: '575px'
-                        , btn: 0
-                        , id: 'prompt'
-                    });
-                    var inputs = $('.prompt-form .input');
-                    inputs.eq(0).val(name);
-                    inputs.eq(1).val(phone);
-                    inputs.eq(2).val(id);
-                    checkForm();
-                }
-            })
 
             /**删除提示层**/
             $('.table').on('click', '.del', function () {
@@ -200,7 +172,33 @@
                 });
             })
 
-            /**弹出层表单验证*/
+            /**编辑提示层**/
+            var prompt_html = $('.prompt').html();
+            $('.table').on('click', '.edit', function () {
+                var self = $(this)
+                    , parents = self.parents('tr');
+                var tds = parents.find('td')
+                    , name = tds.eq(0).text()
+                    , phone = tds.eq(1).text()
+                    , id = parents.data("id");
+
+                if (prompt_html) {
+                    $('.prompt').remove();
+                    modules.modal({
+                        content: prompt_html
+                        , offset: 'auto'
+                        , area: '575px'
+                        , btn: 0
+                        , id: 'prompt'
+                    });
+                    var inputs = $('.prompt-form .input');
+                    inputs.eq(0).val(name);
+                    inputs.eq(1).val(phone);
+                    inputs.eq(2).val(id);
+                    checkForm();
+                }
+            })
+            /**编辑弹出层表单验证*/
             function checkForm() {
                 var form2 = $("#promptForm").Validform({
                     tiptype: 3,
