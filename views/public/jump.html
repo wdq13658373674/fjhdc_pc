@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%include ../common/head.html %>
-
-    <!--selfCss start-->
-    <link rel="stylesheet" href="/style/css/project.css">
-    <!--selfCss end-->
+<%include ../common/head.html %>
+<!--selfCss start-->
+<link rel="stylesheet" href="/style/css/project.css">
+<!--selfCss end-->
 </head>
 <body>
 <!--header start-->
@@ -16,7 +12,6 @@
     <div class="crumbs mt40">
         <a href="/">房计划地产首页 </a> >
         <a href="/Project">管理项目 </a> >
-        <a href="#">邻水县西部新城A-01地块 </a> >
         <span>意向报名 </span>
     </div>
 
@@ -30,12 +25,12 @@
 <%include ../common/footer.html %>
 <!--footer end-->
 <script>
-    $(function(){
-        var i=3;
+    $(function () {
+        var i = 3;
         var intervalid = setInterval(fun, 1000);
 
         function fun() {
-            var url=$('.pro-link').attr('href');
+            var url = $('.pro-link').attr('href');
             if (i == 0) {
                 window.location.href = url;
                 clearInterval(intervalid);

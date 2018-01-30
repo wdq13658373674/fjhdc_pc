@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%include ../common/head.html %>
-
-    <!--selfCss start-->
-    <link rel="stylesheet" href="/style/js/addons/swiper/swiper.min.css">
-    <link rel="stylesheet" href="/style/js/addons/layui/css/layui.css">
-    <link rel="stylesheet" href="/style/css/project.css">
-    <!--selfCss end-->
+<%include ../common/head.html %>
+<!--selfCss start-->
+<link rel="stylesheet" href="/style/js/addons/swiper/swiper.min.css">
+<link rel="stylesheet" href="/style/js/addons/layui/css/layui.css">
+<link rel="stylesheet" href="/style/css/project.css">
+<!--selfCss end-->
 </head>
 <body>
 <!--header start-->
@@ -26,25 +22,34 @@
             <!-- Swiper start -->
             <div id="gallery" class="swiper-container gallery-top" style="width:100%;height:450px;background:#fff;">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
-                    <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
-                    <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
-                    <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                    <div class="swiper-slide"
+                         style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                    <div class="swiper-slide"
+                         style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                    <div class="swiper-slide"
+                         style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                    <div class="swiper-slide"
+                         style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
                 </div>
             </div>
 
             <div class="thumbs-box">
-                <div id="thumbs" class="swiper-container gallery-thumbs" style="width:628px;height:90px;background:#fff;">
+                <div id="thumbs" class="swiper-container gallery-thumbs"
+                     style="width:628px;height:90px;background:#fff;">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
-                        <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
-                        <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
-                        <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                        <div class="swiper-slide"
+                             style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                        <div class="swiper-slide"
+                             style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                        <div class="swiper-slide"
+                             style="background:url('/style/images/test/house.png') center no-repeat;"></div>
+                        <div class="swiper-slide"
+                             style="background:url('/style/images/test/house.png') center no-repeat;"></div>
                     </div>
                 </div>
                 <!-- Add Arrows -->
-                <div class="swiper-button-prev1 gallery-btn"> < </div>
-                <div class="swiper-button-next1 gallery-btn"> > </div>
+                <div class="swiper-button-prev1 gallery-btn"> <</div>
+                <div class="swiper-button-next1 gallery-btn"> ></div>
                 <!-- Swiper end -->
             </div>
         </div>
@@ -85,7 +90,7 @@
             </ul>
             <div class="horizontal-line"></div>
 
-            <a href="/Intention?id=<%=data.id%>" class="btn">意向收集</a>
+            <a href="/Intention?id=<%=data.id%>" id="yx-btn" class="btn">意向收集</a>
         </div>
     </div>
 </div>
@@ -113,7 +118,8 @@
 
                     <!--hover效果-->
                     <a id="map" href="javascript:void(0);" class="dark-mask-box">
-                        <img class="vr-img zoom-img" layer-src="/style/images/test/house.jpg" src="/style/images/icons/zoom_add.png" alt=""/>
+                        <img class="vr-img zoom-img" layer-src="/style/images/test/house.jpg"
+                             src="/style/images/icons/zoom_add.png" alt=""/>
                     </a>
                 </div>
             </div>
@@ -151,7 +157,8 @@
 
         <!--详情 start-->
         <div class="pro-detail">
-            <div class="back"><a href="javascript:void(0)" onclick="$(this).parents('#project-box3').removeClass('active');">返回>></a></div>
+            <div class="back"><a href="javascript:void(0)"
+                                 onclick="$(this).parents('#project-box3').removeClass('active');">返回>></a></div>
             <div class="top mt20 clearfix">
                 <div class="descri pull-left">
                     <div class="title">A-5-1户型</div>
@@ -171,39 +178,51 @@
                 </div>
                 <div class="flash pull-right">
                     <!-- Swiper start -->
-                    <div id="gallery2" class="swiper-container gallery-top" style="width:100%;height:386px;border: 1px solid #cbbfaa;background:#fff;">
+                    <div id="gallery2" class="swiper-container gallery-top"
+                         style="width:100%;height:386px;border: 1px solid #cbbfaa;background:#fff;">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
-                            <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
-                            <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
-                            <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
-                            <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                            <div class="swiper-slide"
+                                 style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                            <div class="swiper-slide"
+                                 style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                            <div class="swiper-slide"
+                                 style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                            <div class="swiper-slide"
+                                 style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
+                            <div class="swiper-slide"
+                                 style="background:url('/style/images/test/house.jpg') center no-repeat;"></div>
                         </div>
                     </div>
                     <div class="thumbs-box">
-                        <div id="thumbs2" class="swiper-container gallery-thumbs mt10" style="width:680px;height:115px;background:#fff;">
+                        <div id="thumbs2" class="swiper-container gallery-thumbs mt10"
+                             style="width:680px;height:115px;background:#fff;">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;">
+                                <div class="swiper-slide"
+                                     style="background:url('/style/images/test/house.png') center no-repeat;">
                                     <p class="caption">户型图1</p>
                                 </div>
-                                <div class="swiper-slide" style="background:url('/style/images/test/house.jpg') center no-repeat;">
+                                <div class="swiper-slide"
+                                     style="background:url('/style/images/test/house.jpg') center no-repeat;">
                                     <p class="caption">户型图2</p>
                                 </div>
-                                <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;">
+                                <div class="swiper-slide"
+                                     style="background:url('/style/images/test/house.png') center no-repeat;">
                                     <p class="caption">户型图3</p>
                                 </div>
-                                <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;">
+                                <div class="swiper-slide"
+                                     style="background:url('/style/images/test/house.png') center no-repeat;">
                                     <p class="caption">户型图4</p>
                                 </div>
-                                <div class="swiper-slide" style="background:url('/style/images/test/house.png') center no-repeat;">
+                                <div class="swiper-slide"
+                                     style="background:url('/style/images/test/house.png') center no-repeat;">
                                     <p class="caption">户型图5</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Add Arrows -->
-                        <div class="swiper-button-prev2 gallery-btn"> < </div>
-                        <div class="swiper-button-next2 gallery-btn"> > </div>
+                        <div class="swiper-button-prev2 gallery-btn"> <</div>
+                        <div class="swiper-button-next2 gallery-btn"> ></div>
                         <!-- Swiper end -->
                     </div>
                 </div>
@@ -365,14 +384,14 @@
 <script src="/style/js/addons/swiper/swiper.min.js"></script>
 <script src="/style/js/addons/layui/layui.js"></script>
 <script>
-    $(function(){
+    $(function () {
         /**flash1**/
         var galleryTop = new Swiper('#gallery', {
             /*autoplay: {
                 delay: 2000,
             },*/
             spaceBetween: 10,
-            loop:true,
+            loop: true,
             loopedSlides: 4,
 
         });
@@ -382,7 +401,7 @@
             touchRatio: 0.2,
             loop: true,
             loopedSlides: 4,
-            slidesOffsetBefore : 0,
+            slidesOffsetBefore: 0,
             slideToClickedSlide: true,
             navigation: {
                 nextEl: '.swiper-button-next1',
@@ -398,7 +417,7 @@
                 delay: 2000,
             },*/
             spaceBetween: 10,
-            loop:true,
+            loop: true,
             loopedSlides: 5,
         });
         var galleryThumbs2 = new Swiper('#thumbs2', {
@@ -407,7 +426,7 @@
             touchRatio: 0.2,
             loop: true,
             loopedSlides: 5,
-            slidesOffsetBefore : 0,
+            slidesOffsetBefore: 0,
             slideToClickedSlide: true,
             navigation: {
                 nextEl: '.swiper-button-next2',
@@ -418,9 +437,9 @@
         galleryThumbs2.controller.control = galleryTop2;
 
         /**tab切换**/
-        $('#project-tab>.item').click(function(){
+        $('#project-tab>.item').click(function () {
             var self = $(this)
-                ,inx=self.index();
+                , inx = self.index();
             var tabBox = $('.tab-box');
             self.addClass('active').siblings('.item').removeClass('active');
 
@@ -430,23 +449,23 @@
         })
 
         /**建设进度-显示详情**/
-        $('.pro-list').on('click','.item',function(){
+        $('.pro-list').on('click', '.item', function () {
             $(this).parents('#project-box3').addClass('active');
-            var params={
-                pid:$(this).data('id'),
-                project_id:'<%=data.id%>'
+            var params = {
+                pid: $(this).data('id'),
+                project_id: '<%=data.id%>'
             };
 
-            $.post('/Project/schedule',params,function(data){
-                if(data.code==1){
+            $.post('/Project/schedule', params, function (data) {
+                if (data.code == 1) {
                     console.log(data);
                 }
             })
         })
 
-        layui.use(['layer', 'flow'],function(){
-            var layer=layui.layer
-                ,flow=layui.flow;
+        layui.use(['layer', 'flow'], function () {
+            var layer = layui.layer
+                , flow = layui.flow;
 
             /**位置周边查看大图**/
             layer.photos({

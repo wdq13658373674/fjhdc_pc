@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%include ../common/head.html %>
-
-    <!--selfCss start-->
-    <link rel="stylesheet" href="/style/css/userpro.css">
-    <!--selfCss end-->
+<%include ../common/head.html %>
+<!--selfCss start-->
+<link rel="stylesheet" href="/style/css/userpro.css">
+<!--selfCss end-->
 </head>
 <body>
 <!--header start-->
@@ -21,7 +17,7 @@
         </div>
     </div>
 
-    <div  id="project-container" class="user-project-container mt20">
+    <div id="project-container" class="user-project-container mt20">
         <div class="project-content clearfix">
             <div class="img pull-left"><img src="/style/images/test/house.jpg" alt=""></div>
 
@@ -389,11 +385,11 @@
 
 <script src="/style/js/addons/layui/layui.js"></script>
 <script>
-    $(function(){
+    $(function () {
         /**tab切换**/
-        $('#project-tab>.item').click(function(){
+        $('#project-tab>.item').click(function () {
             var self = $(this)
-                ,inx=self.index();
+                , inx = self.index();
             var tabBox = $('.tab-box');
             self.addClass('active').siblings('.item').removeClass('active');
 
@@ -403,14 +399,14 @@
         })
 
 
-        layui.use('layer',function(){
+        layui.use('layer', function () {
             var layer = layui.layer;
 
             /** 提示层 ***/
-            $('.tip').on('mouseover',function(){
+            $('.tip').on('mouseover', function () {
                 var self = $(this);
                 modules.tips(self);
-            }).on('mouseout',function(){
+            }).on('mouseout', function () {
                 layer.closeAll();
             })
         })

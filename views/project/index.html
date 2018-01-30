@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%include ../common/head.html %>
-
-    <!--selfCss start-->
-    <link rel="stylesheet" href="/style/css/index.css">
-    <!--selfCss end-->
+<%include ../common/head.html %>
+<!--selfCss start-->
+<link rel="stylesheet" href="/style/css/index.css">
+<!--selfCss end-->
 </head>
 <body>
 <!--header start-->
@@ -63,7 +59,7 @@
         <% }) %>
     </div>
     <!--页码-->
-    <%if(data.total>1){%>
+    <%if(data.last_page>1){%>
     <div class="page-box mt60">
         <div id="page"></div>
     </div>
@@ -76,68 +72,66 @@
 
 <script src="/style/js/addons/layui/layui.js"></script>
 <script>
-    $(function(){
+    $(function () {
         /**分页**/
-        layui.use('laypage', function(){
+        layui.use('laypage', function () {
             var laypage = layui.laypage;
             laypage.render({
                 elem: 'page'
-                ,count: '<%=data.total%>'
-                ,limit:'<%=data.per_page%>'
-                ,groups:10
-                ,prev: '<em> < </em>'
-                ,next: '<em> > </em>'
-                ,theme: 'own'
-                ,last: '尾页'
-                ,jump: function(obj, first){
+                , count: '<%=data.total%>'
+                , limit: '<%=data.per_page%>'
+                , groups: 10
+                , prev: '<em> < </em>'
+                , next: '<em> > </em>'
+                , theme: 'own'
+                , last: '尾页'
+                , jump: function (obj, first) {
                     var cur = obj.curr;
-                    if(!first){
+                    if (!first) {
                         ajax_page(cur);
                     }
                 }
             });
 
-            function ajax_page(cur){
-                $.post('/Project/page_post',{
-                    'page':cur
-                },function(data){
-                    var datas=data.data;
+            function ajax_page(cur) {
+                $.post('/Project/page_post', {
+                    'page': cur
+                }, function (data) {
+                    var datas = data.data;
                     var html = '';
-
-                    console.log(datas);
-                    if(data.code==1){
-                        datas.forEach(function(items){
-                            html+='<div class="project">\n' +
-                                '            <a href="/Project/detail?id='+items.id+'" class="link clearfix">\n' +
-                                '                <div class="img pull-left"><img src="http://res.2.fjhok.com/res/image/'+items.cover+'" alt=""></div>\n' +
+                    if (data.code == 1) {
+                        datas.forEach(function (items) {
+                            html += '<div class="project">\n' +
+                                '            <a href="/Project/detail?id=' + items.id + '" class="link clearfix">\n' +
+                                '                <div class="img pull-left"><img src="http://res.2.fjhok.com/res/image/' + items.cover + '" alt=""></div>\n' +
                                 '\n' +
                                 '                <div class="content pull-left">\n' +
-                                '                    <div class="title">'+items.title+'</div>\n' +
+                                '                    <div class="title">' + items.title + '</div>\n' +
                                 '\n' +
                                 '                    <ul class="msg-list clearfix">\n' +
                                 '                        <li class="item">\n' +
                                 '                            <div class="tit">地块位置</div>\n' +
-                                '                            <div class="con">'+items.address+'</div>\n' +
+                                '                            <div class="con">' + items.address + '</div>\n' +
                                 '                        </li>\n' +
                                 '                        <li class="item">\n' +
                                 '                            <div class="tit">地块编号</div>\n' +
-                                '                            <div class="con">'+items.land_code+'</div>\n' +
+                                '                            <div class="con">' + items.land_code + '</div>\n' +
                                 '                        </li>\n' +
                                 '                        <li class="item">\n' +
                                 '                            <div class="tit">地块面积</div>\n' +
-                                '                            <div class="con">'+items.land_area+' m<sup>2</sup></div>\n' +
+                                '                            <div class="con">' + items.land_area + ' m<sup>2</sup></div>\n' +
                                 '                        </li>\n' +
                                 '                        <li class="item">\n' +
                                 '                            <div class="tit">容积率</div>\n' +
-                                '                            <div class="con">'+items.ratio+'</div>\n' +
+                                '                            <div class="con">' + items.ratio + '</div>\n' +
                                 '                        </li>\n' +
                                 '                        <li class="item">\n' +
                                 '                            <div class="tit">绿化率</div>\n' +
-                                '                            <div class="con">'+items.green+'</div>\n' +
+                                '                            <div class="con">' + items.green + '</div>\n' +
                                 '                        </li>\n' +
                                 '                        <li class="item">\n' +
                                 '                            <div class="tit">建筑密度</div>\n' +
-                                '                            <div class="con">'+items.built_density+'</div>\n' +
+                                '                            <div class="con">' + items.built_density + '</div>\n' +
                                 '                        </li>\n' +
                                 '\n' +
                                 '                    </ul>\n' +

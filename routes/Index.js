@@ -22,7 +22,6 @@ router.get('/', function(req, res, next) {
         }
 
         if(data.code==1){
-            console.log(data);
             res.render('index', obj);
         }else {
             res.send('数据获取：'+data.desc);

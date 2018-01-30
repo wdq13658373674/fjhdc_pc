@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%include ../common/head.html %>
-
-    <!--selfCss start-->
-    <link rel="stylesheet" href="/style/css/project.css">
-    <!--selfCss end-->
+<%include ../common/head.html %>
+<!--selfCss start-->
+<link rel="stylesheet" href="/style/css/project.css">
+<!--selfCss end-->
 </head>
 <body>
 <!--header start-->
@@ -59,12 +55,12 @@
 <!--footer end-->
 <script src="/style/js/addons/Validform_v5.3.2_min.js"></script>
 <script>
-    $(function(){
+    $(function () {
         var form = $("#intentionForm").Validform({
             showAllError: true,
-            tiptype:function(msg,o,cssctl){
-                var objtip=$(".err-tip");
-                cssctl(objtip,o.type);
+            tiptype: function (msg, o, cssctl) {
+                var objtip = $(".err-tip");
+                cssctl(objtip, o.type);
                 objtip.text(msg);
             }
         });

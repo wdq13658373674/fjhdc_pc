@@ -12,8 +12,10 @@ var funs=require('./../models/public');
  */
 router.get('/', function(req, res, next) {
     var flag=funs.is_login(req, res);
+    var page;
+    req.body.page ? page=req.body.page : 1;
 
-    data.getModel('project/index/page/1',{},function(data){
+    data.getModel('project/index/page/'+page,{},function(data){
         if(data.code==1){
             var obj={
                 is_login:flag,
@@ -77,7 +79,6 @@ router.post('/schedule', function(req, res, next) {
     }
 
     data.getModel('project/schedule',params,function(data){
-        console.log(data.ret);
         if(data.code==1){
             res.send({code:1,data:data.desc});
         }else {

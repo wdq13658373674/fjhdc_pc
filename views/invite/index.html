@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%include ../common/head.html %>
-
-    <!--selfCss start-->
-    <link rel="stylesheet" href="/style/css/user.css">
-    <!--selfCss end-->
+<%include ../common/head.html %>
+<!--selfCss start-->
+<link rel="stylesheet" href="/style/css/user.css">
+<!--selfCss end-->
 </head>
 <body>
 <!--header start-->
@@ -62,7 +58,7 @@
                         <td class="rec">推荐中...</td>
                         <td class="edit-box">
                             <a class="edits edit" href="javascript:void(0);">编辑</a>
-                            <a class="edits del"  data-method="notice" href="javascript:void(0);">删除</a>
+                            <a class="edits del" data-method="notice" href="javascript:void(0);">删除</a>
                         </td>
                         <%}else if(items.status==1){%>
                         <td>推荐成功</td>
@@ -107,7 +103,7 @@
 <script src="/style/js/addons/Validform_v5.3.2_min.js"></script>
 
 <script>
-    $(function(){
+    $(function () {
         layui.use('layer', function () {
             var layer = layui.layer;
             /**表单验证*/
@@ -198,6 +194,7 @@
                     checkForm();
                 }
             })
+
             /**编辑弹出层表单验证*/
             function checkForm() {
                 var form2 = $("#promptForm").Validform({

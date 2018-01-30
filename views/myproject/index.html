@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%include ../common/head.html %>
-
-    <!--selfCss start-->
-    <link rel="stylesheet" href="/style/css/user.css">
-    <!--selfCss end-->
+<%include ../common/head.html %>
+<!--selfCss start-->
+<link rel="stylesheet" href="/style/css/user.css">
+<!--selfCss end-->
 </head>
 <body>
 <!--header start-->
@@ -33,7 +29,8 @@
                 <div class="empty" style="margin:20px 30px;">你还没有参与项目</div>
                 <%}else{data.forEach(function(items){%>
                 <a class="project clearfix" href="/Myproject/detail?id=<%=items.id%>">
-                    <div class="img pull-left"><img src="http://res.2.fjhok.com/res/image/<%=items.cover%>" alt=""></div>
+                    <div class="img pull-left"><img src="http://res.2.fjhok.com/res/image/<%=items.cover%>" alt="">
+                    </div>
 
                     <div class="content pull-left">
                         <ul class="msg-list clearfix">
@@ -87,7 +84,7 @@
 </div>
 
 <script>
-    $(function(){
+    $(function () {
 
     })
 </script>

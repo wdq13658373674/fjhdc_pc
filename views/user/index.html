@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <%include ../common/head.html %>
-
-    <!--selfCss start-->
-    <link rel="stylesheet" href="/style/css/user.css">
-    <!--selfCss end-->
+<%include ../common/head.html %>
+<!--selfCss start-->
+<link rel="stylesheet" href="/style/css/user.css">
+<!--selfCss end-->
 </head>
 <body>
 <!--header start-->
@@ -35,11 +31,11 @@
 
                     <li class="item yellow-light f30 mt10">
                         <%if(data.real_name){%>
-                           <%=data.real_name%>
+                        <%=data.real_name%>
                         <%}else if(data.nickname){%>
-                            <%=data.nickname%>
+                        <%=data.nickname%>
                         <%}else if(data.mobile){%>
-                            <%=data.mobile%>
+                        <%=data.mobile%>
                         <%}%>
                     </li>
                     <li class="item mt20 clearfix">
@@ -59,7 +55,7 @@
 </div>
 
 <script>
-    $(function(){
+    $(function () {
     })
 </script>
 </body>
