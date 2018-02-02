@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
     }
 
     data.getModel('agent_invite/index',params,function(data){
+        console.log(data.ret);
         if(data.code==1){
             var num=data.ret.length;
             if(num!=0){

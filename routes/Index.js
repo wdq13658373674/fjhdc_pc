@@ -14,14 +14,14 @@ router.get('/', function(req, res, next) {
     var flag=funs.is_login(req, res);
 
     data.getModel('Project/index',{},function(data){
-        var obj={
-            is_login:flag,
-            data:data.ret.data,
-            title: '首页',
-            menu:"index"
-        }
-
         if(data.code==1){
+            var obj={
+                is_login:flag,
+                data:data.ret.data,
+                title: '首页',
+                menu:"index"
+            }
+
             res.render('index', obj);
         }else {
             res.send('数据获取：'+data.desc);

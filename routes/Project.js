@@ -56,11 +56,21 @@ router.get('/detail', function(req, res, next) {
 
     data.getModel('project/ProjectDetails',params,function(data){
         if(data.code==1){
+            /**时间戳转换**/
+            data.ret.schedule.forEach(function(items){
+                var progress_time=items.progress_time;
+
+                items.progress_time=funs.UnixToDate(progress_time,false);
+                items.year=items.progress_time.substring(0,4);
+                items.month=items.progress_time.substring(5,10);
+
+            })
+
             var obj={
                 is_login:flag,
                 data:data.ret,
                 title: '管理项目详情',
-                menu:"pro"
+                menu:"pro",
             };
             res.render('project/detail',obj);
         }else {
