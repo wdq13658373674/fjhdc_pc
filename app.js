@@ -41,14 +41,6 @@ app.locals.servers= {
     imgUrl:'http://res.2.fjhok.com/res/image/'//服务器端图片地址
 };
 
-// 添加模板必需的三个变量
-/*app.use(function (req, res, next) {
-    res.locals.user = req.session.user;
-    res.locals.success = req.flash('success').toString();
-    res.locals.error = req.flash('error').toString();
-    next();
-});*/
-
 //Global routing landing interception
 var prevent_paths = [
     '/User'

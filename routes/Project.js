@@ -12,15 +12,12 @@ var funs=require('./../models/public');
  */
 router.get('/', function(req, res, next) {
     var flag=funs.is_login(req, res);
-    var page;
-    req.body.page ? page=req.body.page : 1;
-
-    data.getModel('project/index/page/'+page,{},function(data){
+    data.getModel('project/index/page/1',{},function(data){
         if(data.code==1){
             var obj={
                 is_login:flag,
                 data:data.ret,
-                title: '管理项目',
+                title:'管理项目',
                 menu:"pro"
             };
             res.render('project/index',obj);
@@ -63,7 +60,6 @@ router.get('/detail', function(req, res, next) {
                 items.progress_time=funs.UnixToDate(progress_time,false);
                 items.year=items.progress_time.substring(0,4);
                 items.month=items.progress_time.substring(5,10);
-
             })
 
             var obj={
