@@ -24,6 +24,8 @@ router.get('/', function(req, res, next) {
                 menu:"index"
             }
             res.render('User/index',obj);
+        }else {
+            next();
         }
     });
 });
@@ -47,6 +49,8 @@ router.get('/message', function(req, res, next) {
                 menu:"msg"
             }
             res.render('user/message', obj);
+        }else {
+            next();
         }
     });
 

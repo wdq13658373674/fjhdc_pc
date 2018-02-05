@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
             };
             res.render('project/index',obj);
         }else {
-            res.send({code:0,data:data.desc});
+            next();
         }
     });
 });
@@ -36,7 +36,7 @@ router.post('/page_post', function(req, res, next) {
         if(data.code==1){
             res.send({code:1,data:data.ret.data});
         }else {
-            res.send({code:0,data:data.desc});
+            next();
         }
     });
 });
@@ -70,7 +70,7 @@ router.get('/detail', function(req, res, next) {
             };
             res.render('project/detail',obj);
         }else {
-            res.send({code:0,data:data.desc});
+            next();
         }
     });
 });
@@ -88,7 +88,7 @@ router.post('/schedule', function(req, res, next) {
         if(data.code==1){
             res.send({code:1,data:data.desc});
         }else {
-            res.send({code:0,data:data.desc});
+            next();
         }
     });
 });

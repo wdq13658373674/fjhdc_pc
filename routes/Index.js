@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 
             res.render('index', obj);
         }else {
-            res.send('数据获取：'+data.desc);
+            next();
         }
     });
 });

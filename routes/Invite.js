@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
     }
 
     data.getModel('agent_invite/index',params,function(data){
-        console.log(data.ret);
         if(data.code==1){
             var num=data.ret.length;
             if(num!=0){
@@ -32,7 +31,7 @@ router.get('/', function(req, res, next) {
             }
             res.render('invite/index',obj);
         }else {
-            res.send('数据返回'+data.desc);
+            next();
         }
     });
 });
@@ -41,7 +40,7 @@ router.get('/', function(req, res, next) {
  * 个人中心-推荐客户（添加）
  */
 router.post('/invite_add', function(req, res, next) {
-    var uid=req.session.user//获取cookie
+    var uid=req.session.user
         ,phone=req.body.phone
         ,realname=req.body.realname
 
@@ -64,7 +63,7 @@ router.post('/invite_add', function(req, res, next) {
  * 个人中心-推荐客户（编辑）
  */
 router.post('/invite_update', function(req, res, next) {
-    var uid=req.session.user//获取cookie
+    var uid=req.session.user
         ,phone=req.body.phone
         ,realname=req.body.realname
         ,id=req.body.id
@@ -97,8 +96,7 @@ router.post('/invite_del', function(req, res, next) {
         if(data.code==1){
             res.send({"code":1,"msg":data.desc});
         }else {
-            console.log(data);
-            res.send({"code":0,"msg":data.desc});
+            res.send({"code":0,"msg":'删除失败'});
         }
     });
 });

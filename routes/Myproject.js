@@ -20,6 +20,8 @@ router.get('/', function(req, res, next) {
                 menu:"pro"
             }
             res.render('myproject/index.html',obj);
+        }else {
+            next();
         }
     });
 });
@@ -34,6 +36,8 @@ router.get('/detail', function(req, res, next) {
     data.getModel('Project/index',{},function(data){
         if(data.code==1){
             res.render('myproject/detail.html', {data:data.ret.data,title: '个人中心-我的项目-详情'});
+        }else {
+            next();
         }
     });
 });
@@ -48,6 +52,8 @@ router.get('/detail_more', function(req, res, next) {
     data.getModel('Project/index',{},function(data){
         if(data.code==1){
             res.render('myproject/detail_more.html', {data:data.ret.data,title: '销售详情'});
+        }else {
+            next();
         }
     });
 });

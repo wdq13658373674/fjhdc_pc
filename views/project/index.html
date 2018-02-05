@@ -103,7 +103,7 @@
                         datas.forEach(function (items) {
                             html += '<div class="project">\n' +
                                 '            <a href="/Project/detail?id=' + items.id + '" class="link clearfix">\n' +
-                                '                <div class="img pull-left"><img src="http://res.2.fjhok.com/res/image/' + items.cover + '" alt=""></div>\n' +
+                                '                <div class="img pull-left"><img src="<%=servers.imgUrl%>' + items.cover + '" alt=""></div>\n' +
                                 '\n' +
                                 '                <div class="content pull-left">\n' +
                                 '                    <div class="title">' + items.title + '</div>\n' +
