@@ -86,7 +86,7 @@ router.post('/login_post', function(req, res, next) {
  * */
 router.get('/exit',function(req,res,next){
     req.session.destroy();//清除session
-    res.redirect("/Public/login");
+    res.redirect('back');
 })
 
 /**
