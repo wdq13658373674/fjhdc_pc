@@ -43,6 +43,7 @@ router.get('/message', function(req, res, next) {
             if(data.ret.birthday == null){
                 data.ret.birthday=funs.now_time(false);
             }
+
             var obj={
                 data:data.ret,
                 title: '个人资料',
