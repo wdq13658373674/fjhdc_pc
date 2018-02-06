@@ -1,13 +1,4 @@
 module.exports={
-    /**检查cookie**/
-    is_login:function(req, res){
-        var uid=req.session.user;
-        if(uid){
-            return true;
-        }
-
-        return false;
-    },
     /**获取当前时间**/
     now_time:function(time){
         var date = new Date();

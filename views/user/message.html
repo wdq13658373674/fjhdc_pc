@@ -64,11 +64,7 @@
                         <div class="fixed-select select-box pull-left">
                             <div class="form-control">
                                 <span>
-                                    <%if(data.sex == 0){%>
-                                    女
-                                    <%}else{%>
-                                    男
-                                    <%}%>
+                                    <%= data.sex==0 ? '女':'男'%>
                                 </span>
                             </div>
                             <input class="required" sucmsg=" " type="hidden" name="sex" datatype="text" id=""
@@ -117,6 +113,7 @@
                 ajaxPost: true,
                 btnSubmit: '#save',
                 callback: function (data) {
+                    $.Hidemsg();
                     if (data.code == 1) {
                         layer.msg(' 修改成功！');
                         setTimeout(function () {
