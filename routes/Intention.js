@@ -28,7 +28,6 @@ router.get('/', function(req, res, next) {
         }else {
             var obj={
                 'title':'系统跳转',
-                'is_login':funs.is_login(req, res),
                 'msg':'你已参与此项目，即将跳转到个人中心参与项目',
                 'menu':"pro"
             }
@@ -51,7 +50,6 @@ router.post('/', function(req, res, next) {
         if(data.code==1){
             var obj={
                 'title':'系统跳转',
-                'is_login':funs.is_login(req, res),
                 'msg':'参与成功，工作人员将在24小时内与您联系',
                 'menu':"pro"
             }

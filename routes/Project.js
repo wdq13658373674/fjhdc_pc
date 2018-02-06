@@ -11,11 +11,9 @@ var funs=require('./../models/public');
  * 管理项目
  */
 router.get('/', function(req, res, next) {
-    var flag=funs.is_login(req, res);
     data.getModel('project/index/page/1',{},function(data){
         if(data.code==1){
             var obj={
-                is_login:flag,
                 data:data.ret,
                 title:'管理项目',
                 menu:"pro"
@@ -45,8 +43,6 @@ router.post('/page_post', function(req, res, next) {
  * 管理项目-详情
  */
 router.get('/detail', function(req, res, next) {
-    var flag=funs.is_login(req, res);
-
     var params={
         project_id:req.query.id
     }
@@ -56,14 +52,10 @@ router.get('/detail', function(req, res, next) {
             /**时间戳转换**/
             data.ret.schedule.forEach(function(items){
                 var progress_time=items.progress_time;
-
                 items.progress_time=funs.UnixToDate(progress_time,false);
-                items.year=items.progress_time.substring(0,4);
-                items.month=items.progress_time.substring(5,10);
             })
 
             var obj={
-                is_login:flag,
                 data:data.ret,
                 title: '管理项目详情',
                 menu:"pro",

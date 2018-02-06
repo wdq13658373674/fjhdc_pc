@@ -23,7 +23,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -40,17 +39,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.locals.servers= {
     imgUrl:'http://res.2.fjhok.com/res/image/'//服务器端图片地址
 };
+app.use(function(req, res, next) {
+    res.locals.is_login = req.session.user;
+    next();
+});
 
 //Global routing landing interception
 var prevent_paths = [
     '/User'
     ,'/User/*'
     ,'/Myproject'
-    ,'/Myproject/*'
+    ,'/Myproject/!*'
     ,'/Intention'
-    ,'/Intention/*'
+    ,'/Intention/!*'
     ,'/Invite'
-    ,'/Invite/*'
+    ,'/Invite/!*'
 ];
 prevent_paths.forEach(function(items){
     app.all(items,function(req, res, next){
@@ -85,7 +88,6 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
