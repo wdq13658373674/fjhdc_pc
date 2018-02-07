@@ -15,8 +15,6 @@ router.get('/', function(req, res, next) {
         if(data.code==1){
             var obj={
                 data:data.ret,
-                title:'管理项目',
-                menu:"pro"
             };
             res.render('project/index',obj);
         }else {
@@ -57,8 +55,6 @@ router.get('/detail', function(req, res, next) {
 
             var obj={
                 data:data.ret,
-                title: '管理项目详情',
-                menu:"pro",
             };
             res.render('project/detail',obj);
         }else {

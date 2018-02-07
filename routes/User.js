@@ -20,8 +20,6 @@ router.get('/', function(req, res, next) {
         if(data.code==1){
             var obj={
                 data:data.ret,
-                title: '个人中心',
-                menu:"index"
             }
             res.render('User/index',obj);
         }else {
@@ -46,8 +44,6 @@ router.get('/message', function(req, res, next) {
 
             var obj={
                 data:data.ret,
-                title: '个人资料',
-                menu:"msg"
             }
             res.render('user/message', obj);
         }else {

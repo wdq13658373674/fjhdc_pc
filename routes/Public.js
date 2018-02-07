@@ -10,7 +10,7 @@ var funs=require('./../models/public');
  * 注册（页面渲染）
  */
 router.get('/reg', function(req, res, next) {
-    res.render('public/register', {title:'注册'});
+    res.render('public/register');
 });
 /**
  * 注册（提交）
@@ -59,7 +59,7 @@ router.post('/sendVerify',function (req,res) {
  * 登陆
  */
 router.get('/login', function(req, res, next) {
-    res.render('public/login', { title:'登陆' });
+    res.render('public/login');
 });
 /**
  * 登陆（提交）
@@ -85,8 +85,14 @@ router.post('/login_post', function(req, res, next) {
  * 清空缓存
  * */
 router.get('/exit',function(req,res,next){
-    req.session.destroy();//清除session
-    res.redirect('back');
+   //清除session
+    req.session.destroy(function(err){
+        if(err){
+            next();
+        }else{
+            res.redirect('back');
+        }
+    })
 })
 
 /**
@@ -94,9 +100,7 @@ router.get('/exit',function(req,res,next){
  */
 router.get('/jump', function(req, res, next) {
     var obj={
-        'title':'系统跳转',
         'msg':'系统跳转',
-        'menu':"pro"
     }
     res.render('public/jump',obj);
 });

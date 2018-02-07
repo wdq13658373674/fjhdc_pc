@@ -25,9 +25,7 @@ router.get('/', function(req, res, next) {
 
             var obj={
                 num:num,
-                data:data.ret,
-                title: '推荐客户',
-                menu:"recom"
+                data:data.ret
             }
             res.render('invite/index',obj);
         }else {

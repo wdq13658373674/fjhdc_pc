@@ -1,4 +1,4 @@
-<%include ../common/head.html %>
+<%- include('../common/head.html', {title: '管理项目-详情'}) %>
 <!--selfCss start-->
 <link rel="stylesheet" href="/style/js/addons/swiper/swiper.min.css">
 <link rel="stylesheet" href="/style/js/addons/layui/css/layui.css">
@@ -7,7 +7,7 @@
 </head>
 <body>
 <!--header start-->
-<%include ../common/header.html %>
+<%- include('../common/header.html', {menu: 'pro'}) %>
 <!--header end-->
 
 <div id="project-detail">
@@ -143,9 +143,11 @@
             <%data.schedule.forEach(function(items){%>
             <li data-id="<%=data.id%>" class="item">
                 <div class="date pull-left">
-                    <p class="year"><%=items.year%></p>
+                    <p class="year">
+                        <%=items.progress_time.substring(0,4)%>
+                    </p>
 
-                    <p class="mon"><%=items.month%></p>
+                    <p class="mon"><%=items.progress_time.substring(5,10)%></p>
                 </div>
                 <div class="tit">
                     <%=items.title%>
@@ -464,8 +466,7 @@
         })
 
         layui.use(['layer', 'flow'], function () {
-            var layer = layui.layer
-                , flow = layui.flow;
+            var layer = layui.layer;
 
             /**位置周边查看大图**/
             layer.photos({
@@ -474,32 +475,6 @@
                 photos: '#map',
                 shift: 5
             });
-
-            /**下拉加载**/
-            /*flow.load({
-                elem: '#proList'
-                , end: '哦～！没有更多了'
-                , mb: 100
-                , done: function (page, next) {
-                    var list=[]
-                        ,limit=3
-                        ,schedule='<%=data.schedule%>'
-                        ,pages=Math.ceil(schedule.length / 10);
-                    console.log(pages);
-
-                    //模拟数据插入
-                    /!*setTimeout(function () {
-                        var lis = [];
-                        for (var i = 0; i < 8; i++) {
-                            lis.push('<li class="item">1</li>')
-                        }
-
-                        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                        next(lis.join(''), page < 2); //假设总页数为 2
-                    }, 500);*!/
-                }
-            });*/
-
         })
     })
 </script>

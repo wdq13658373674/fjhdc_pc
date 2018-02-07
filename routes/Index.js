@@ -12,10 +12,7 @@ router.get('/', function(req, res, next) {
         if(data.code==1){
             var obj={
                 data:data.ret.data,
-                title: '首页',
-                menu:"index"
             }
-
             res.render('index', obj);
         }else {
             next();

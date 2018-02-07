@@ -15,9 +15,7 @@ router.get('/', function(req, res, next) {
     data.getModel('project_user/index',params,function(data){
         if(data.code==1){
             var obj={
-                data:data.ret,
-                title: '个人中心-参与项目',
-                menu:"pro"
+                data:data.ret
             }
             res.render('myproject/index.html',obj);
         }else {
@@ -27,7 +25,7 @@ router.get('/', function(req, res, next) {
 });
 
 /**
- * 我的项目-详情
+ * 参与项目-详情
  */
 router.get('/detail', function(req, res, next) {
     /**
@@ -35,7 +33,10 @@ router.get('/detail', function(req, res, next) {
      * **/
     data.getModel('Project/index',{},function(data){
         if(data.code==1){
-            res.render('myproject/detail.html', {data:data.ret.data,title: '个人中心-我的项目-详情'});
+            var obj={
+                data:data.ret.data
+            }
+            res.render('myproject/detail.html', obj);
         }else {
             next();
         }
@@ -43,7 +44,7 @@ router.get('/detail', function(req, res, next) {
 });
 
 /**
- * 我的项目-详情-更多
+ * 参与项目-详情-更多
  */
 router.get('/detail_more', function(req, res, next) {
     /**
@@ -51,7 +52,10 @@ router.get('/detail_more', function(req, res, next) {
      * **/
     data.getModel('Project/index',{},function(data){
         if(data.code==1){
-            res.render('myproject/detail_more.html', {data:data.ret.data,title: '销售详情'});
+            var obj={
+                data:data.ret.data
+            }
+            res.render('myproject/detail_more.html', obj);
         }else {
             next();
         }

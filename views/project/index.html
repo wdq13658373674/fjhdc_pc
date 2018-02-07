@@ -1,11 +1,11 @@
-<%include ../common/head.html %>
+<%- include('../common/head.html', {title: '管理项目'}) %>
 <!--selfCss start-->
 <link rel="stylesheet" href="/style/css/index.css">
 <!--selfCss end-->
 </head>
 <body>
 <!--header start-->
-<%include ../common/header.html %>
+<%- include('../common/header.html', {menu: 'pro'}) %>
 <!--header end-->
 
 <div class="index-projects min-width" style="padding-top: 145px;">
@@ -87,7 +87,7 @@
                 , last: '尾页'
                 , jump: function (obj, first) {
                     var cur = obj.curr;
-                    if (!first) {
+                    if(!first){
                         ajax_page(cur);
                     }
                 }
@@ -97,9 +97,10 @@
                 $.post('/Project/page_post', {
                     'page': cur
                 }, function (data) {
-                    var datas = data.data;
-                    var html = '';
-                    if (data.code == 1) {
+                    if(data.code==1){
+                        var datas = data.data;
+                        var html = '';
+
                         datas.forEach(function (items) {
                             html += '<div class="project">\n' +
                                 '            <a href="/Project/detail?id=' + items.id + '" class="link clearfix">\n' +
@@ -139,9 +140,9 @@
                                 '            </a>\n' +
                                 '        </div>';
                         })
-                    }
 
-                    $('#project-list').html(html);
+                        $('#project-list').html(html);
+                    }
                 })
             }
         });

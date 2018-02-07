@@ -1,11 +1,11 @@
-<%include ../common/head.html %>
+<%- include('../common/head.html', {title: '个人中心-参与项目'}) %>
 <!--selfCss start-->
 <link rel="stylesheet" href="/style/css/user.css">
 <!--selfCss end-->
 </head>
 <body>
 <!--header start-->
-<%include ../common/uheader.html %>
+<%- include('../common/uheader.html') %>
 <!--header end-->
 
 <div class="user-wrap min-width">
@@ -19,7 +19,7 @@
 
     <div class="user-container mt20 clearfix">
         <!--menu-list start-->
-        <%include ../common/usermenu.html %>
+        <%- include('../common/usermenu.html', {menu:'pro'}) %>
         <!--menu-list end-->
 
         <!--user-content start-->

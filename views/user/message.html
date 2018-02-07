@@ -1,4 +1,4 @@
-<%include ../common/head.html %>
+<%- include('../common/head.html', {title: '个人中心-个人资料'}) %>
 <!--selfCss start-->
 <link rel="stylesheet" href="/style/js/addons/layui/css/layui.css">
 <link rel="stylesheet" href="/style/css/user.css">
@@ -6,7 +6,7 @@
 </head>
 <body>
 <!--header start-->
-<%include ../common/uheader.html %>
+<%- include('../common/uheader.html')%>
 <!--header end-->
 
 <div class="user-wrap min-width">
@@ -20,7 +20,7 @@
 
     <div class="user-container mt20 clearfix">
         <!--menu-list start-->
-        <%include ../common/usermenu.html %>
+        <%- include('../common/usermenu.html', {menu:'msg'}) %>
         <!--menu-list end-->
 
         <!--user-content start-->

@@ -4,9 +4,6 @@ var router = express.Router();
 var Model=require('./../models/servers');
 var data=new Model();
 
-//common fun
-var funs=require('./../models/public');
-
 /**
  * 管理项目-意向报名（渲染）
  */
@@ -21,15 +18,11 @@ router.get('/', function(req, res, next) {
             var obj={
                 project:data.ret.project,
                 amount:data.ret.project_mean
-                ,title: '意向报名'
-                ,menu:"pro"
             }
             res.render('intention/index', obj);
         }else {
             var obj={
-                'title':'系统跳转',
                 'msg':'你已参与此项目，即将跳转到个人中心参与项目',
-                'menu':"pro"
             }
             res.render('public/jump', obj);
         }
@@ -49,9 +42,7 @@ router.post('/', function(req, res, next) {
     data.getModel('project/intentionAdd',params,function(data){
         if(data.code==1){
             var obj={
-                'title':'系统跳转',
                 'msg':'参与成功，工作人员将在24小时内与您联系',
-                'menu':"pro"
             }
             res.render('public/jump', obj);
         }else {
