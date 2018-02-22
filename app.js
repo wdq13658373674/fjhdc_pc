@@ -49,11 +49,11 @@ var prevent_paths = [
     '/User'
     ,'/User/*'
     ,'/Myproject'
-    ,'/Myproject/!*'
+    ,'/Myproject/*'
     ,'/Intention'
-    ,'/Intention/!*'
+    ,'/Intention/*'
     ,'/Invite'
-    ,'/Invite/!*'
+    ,'/Invite/*'
 ];
 prevent_paths.forEach(function(items){
     app.all(items,function(req, res, next){
