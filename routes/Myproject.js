@@ -28,13 +28,14 @@ router.get('/', function(req, res, next) {
  * 参与项目-详情
  */
 router.get('/detail', function(req, res, next) {
-    /**
-     * todo list
-     * **/
-    data.getModel('Project/index',{},function(data){
+    var params={
+        project_id:req.query.id,
+        pid:0
+    }
+    data.getModel('sell/index',params,function(data){
         if(data.code==1){
             var obj={
-                data:data.ret.data
+                data:data.ret
             }
             res.render('myproject/detail.html', obj);
         }else {
@@ -43,13 +44,31 @@ router.get('/detail', function(req, res, next) {
     });
 });
 
+router.post('/detail_post', function(req, res, next) {
+   var params={
+       pid:req.body.pid,
+       project_id:req.body.project_id
+   }
+    data.getModel('sell/getMenuChlild',params,function(data){
+        // console.log(data.ret[0].fore);
+
+        if(data.code==1){
+            res.send({
+                code:1,
+                data:data.ret
+            })
+        }else {
+            next();
+        }
+    });
+});
+
+
+
 /**
  * 参与项目-详情-更多
  */
 router.get('/detail_more', function(req, res, next) {
-    /**
-     * todo list
-     * **/
     data.getModel('Project/index',{},function(data){
         if(data.code==1){
             var obj={
