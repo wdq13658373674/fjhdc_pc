@@ -93,7 +93,7 @@
                 project_id:self.data('proid'),
             };
             console.log(params);
-            //ajax
+            //tab_Ajax
             tab_Ajax(params);
         })
         $('#project-tab>.item').eq(0).trigger('click');
@@ -111,6 +111,9 @@
             })
         })
 
+        /**
+         * tab_Ajax Fun
+         * **/
         function tab_Ajax(params) {
             var wrap=$('#project-box');
             var html = '';
