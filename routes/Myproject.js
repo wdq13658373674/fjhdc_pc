@@ -50,7 +50,7 @@ router.post('/detail_post', function(req, res, next) {
        project_id:req.body.project_id
    }
     data.getModel('sell/getMenuChlild',params,function(data){
-        // console.log(data.ret[0].fore);
+        console.log(data.ret[0].fore);
 
         if(data.code==1){
             res.send({

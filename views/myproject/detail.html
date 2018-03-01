@@ -115,6 +115,7 @@
             var wrap=$('#project-box');
             var html = '';
             $.post('/Myproject/detail_post',params,function(res){
+                console.log(res.data);
                 if(res.code == 1){
                     res.data.forEach(function(item,index){
                         var table_title=''
@@ -122,9 +123,19 @@
 
                         item.three.forEach(function(item){
                             table_title+='<td>'+item.title+'</td>\n'
-                        })
-                        item.fore.forEach(function(item){
-                            table_body+='';
+                        });
+
+                        item.fore.forEach(function(i){
+                            table_body+='<tr>';
+                            item.three.forEach(function(n,k){
+                                id=n.id+"-"+k;
+                                if(i[id]){
+                                    table_body+='<td>'+i[id].title+'</td>';
+                                }else{
+                                    table_body+='<td></td>';
+                                }
+                            });
+                            table_body+='</tr>';
                         })
 
                         html +='                <div class="title mt50">' + item.title + '</div>\n' +
@@ -132,26 +143,7 @@
                             '        <thead>\n' +
                             '             <tr>'+table_title+'</tr>\n' +
                             '        </thead>' +
-                                '<tbody>\n' +
-                            '                    <tr>\n' +
-                            '                        <td>股金</td>\n' +
-                            '                        <td>20,800,000.00</td>\n' +
-                            '                        <td>21,150,000.00</td>\n' +
-                            '                        <td>24%</td>\n' +
-                            '                    </tr>\n' +
-                            '                    <tr>\n' +
-                            '                        <td>股金</td>\n' +
-                            '                        <td>20,800,000.00</td>\n' +
-                            '                        <td>21,150,000.00</td>\n' +
-                            '                        <td>24%</td>\n' +
-                            '                    </tr>\n' +
-                            '                    <tr>\n' +
-                            '                        <td>合计</td>\n' +
-                            '                        <td>20,800,000.00</td>\n' +
-                            '                        <td>21,150,000.00</td>\n' +
-                            '                        <td>24%</td>\n' +
-                            '                    </tr>\n' +
-                            '                    </tbody>'+
+                            '<tbody>' +table_body+'</tbody>'+
                             '</table>'
                     })
 

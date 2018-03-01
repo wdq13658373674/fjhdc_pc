@@ -45,15 +45,15 @@ app.use(function(req, res, next) {
 });
 
 // 登陆拦截
-var prevent_paths = [
+/*var prevent_paths = [
     '/User'
-    ,'/User/*'
+    ,'/User/!*'
     ,'/Myproject'
-    ,'/Myproject/*'
+    ,'/Myproject/!*'
     ,'/Intention'
-    ,'/Intention/*'
+    ,'/Intention/!*'
     ,'/Invite'
-    ,'/Invite/*'
+    ,'/Invite/!*'
 ];
 prevent_paths.forEach(function(items){
     app.all(items,function(req, res, next){
@@ -65,7 +65,7 @@ prevent_paths.forEach(function(items){
             next();
         }
     })
-})
+})*/
 
 app.use('/', Index);
 app.use('/User', User);
