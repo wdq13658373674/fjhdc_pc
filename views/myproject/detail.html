@@ -92,7 +92,6 @@
                 pid:self.data('pid'),
                 project_id:self.data('proid'),
             };
-            console.log(params);
             //tab_Ajax
             tab_Ajax(params);
         })
@@ -118,7 +117,6 @@
             var wrap=$('#project-box');
             var html = '';
             $.post('/Myproject/detail_post',params,function(res){
-                console.log(res.data);
                 if(res.code == 1){
                     res.data.forEach(function(item,index){
                         var table_title=''
@@ -133,7 +131,7 @@
                             item.three.forEach(function(n,k){
                                 id=n.id+"-"+k;
                                 if(i[id]){
-                                    table_body+='<td>'+i[id].title+'</td>';
+                                    table_body+='<td><a href="/Myproject/detail_more?id='+i[id].id+'">'+i[id].title+'</a></td>';
                                 }else{
                                     table_body+='<td></td>';
                                 }
