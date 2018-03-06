@@ -68,7 +68,7 @@
 
         <div id="project-tab" class="mt60">
             <%data.sellOneTitle.forEach(function(item){%>
-            <div class="item <%if(item.sort==1){%> active <%}%>" data-pid="<%=item.id%>" data-proid="<%=item.project_id%>"><%=item.title%></div>
+            <div class="item <%if(item.sort==1){%> active <%}%>" data-pid="<%=item.id%>" data-proid="<%=data.project.id%>"><%=item.title%></div>
             <%})%>
         </div>
 
@@ -123,19 +123,6 @@
                         item.three.forEach(function(item){
                             table_title+='<td>'+item.title+'</td>\n'
                         });
-
-                        /*item.fore.forEach(function(i){
-                            table_body+='<tr>';
-                            item.three.forEach(function(n,k){
-                                if(i['id']){
-                                    id=n.id+"-"+k;
-                                    table_body+='<td><a href="/Myproject/detail_more?id='+i[id].id+'">'+i[id].title+'</a></td>';
-                                }else{
-                                    table_body+='<td></td>';
-                                }
-                            });
-                            table_body+='</tr>';
-                        })*/
 
                         $.each(item.fore,function(j,i){
                             table_body+='<tr>';

@@ -46,8 +46,8 @@ router.get('/detail', function(req, res, next) {
 
 router.post('/detail_post', function(req, res, next) {
    var params={
-       pid:req.body.pid,
-       project_id:req.body.project_id
+       project_id:req.body.project_id,
+       pid:req.body.pid
    }
     data.getModel('sell/getMenuChlild',params,function(data){
         if(data.code==1){
