@@ -45,9 +45,9 @@ app.use(function(req, res, next) {
 });
 
 // 登陆拦截
-/*var prevent_paths = [
+var prevent_paths = [
     '/User'
-    ,'/User/!*'
+    ,'/User/*'
     ,'/Myproject'
     ,'/Myproject/!*'
     ,'/Intention'
@@ -65,7 +65,7 @@ prevent_paths.forEach(function(items){
             next();
         }
     })
-})*/
+})
 
 app.use('/', Index);
 app.use('/User', User);
