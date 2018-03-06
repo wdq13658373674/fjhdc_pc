@@ -5,7 +5,7 @@
 </head>
 <body>
 <!--header start-->
-<%- include('../common/uheader.html') %>
+<%- include('../common/uheader.html')%>
 <!--header end-->
 
 <div class="user-project-wrap min-width">
@@ -13,7 +13,7 @@
         <div class="crumbs mt20 pull-right">
             <a href="/">房计划地产首页 </a> >
             <a href="/User">个人中心 </a> >
-            <span>推荐客户 </span>
+            <span>参与项目详情 </span>
         </div>
     </div>
 
@@ -92,7 +92,7 @@
                 pid:self.data('pid'),
                 project_id:self.data('proid'),
             };
-            //tab_Ajax
+            //ajax
             tab_Ajax(params);
         })
         $('#project-tab>.item').eq(0).trigger('click');
@@ -110,9 +110,6 @@
             })
         })
 
-        /**
-         * tab_Ajax Fun
-         * **/
         function tab_Ajax(params) {
             var wrap=$('#project-box');
             var html = '';
@@ -127,7 +124,20 @@
                             table_title+='<td>'+item.title+'</td>\n'
                         });
 
-                        item.fore.forEach(function(i){
+                        /*item.fore.forEach(function(i){
+                            table_body+='<tr>';
+                            item.three.forEach(function(n,k){
+                                if(i['id']){
+                                    id=n.id+"-"+k;
+                                    table_body+='<td><a href="/Myproject/detail_more?id='+i[id].id+'">'+i[id].title+'</a></td>';
+                                }else{
+                                    table_body+='<td></td>';
+                                }
+                            });
+                            table_body+='</tr>';
+                        })*/
+
+                        $.each(item.fore,function(j,i){
                             table_body+='<tr>';
                             item.three.forEach(function(n,k){
                                 id=n.id+"-"+k;

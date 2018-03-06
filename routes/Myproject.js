@@ -50,8 +50,6 @@ router.post('/detail_post', function(req, res, next) {
        project_id:req.body.project_id
    }
     data.getModel('sell/getMenuChlild',params,function(data){
-        console.log(data.ret[0].fore);
-
         if(data.code==1){
             res.send({
                 code:1,
@@ -69,10 +67,13 @@ router.post('/detail_post', function(req, res, next) {
  * 参与项目-详情-更多
  */
 router.get('/detail_more', function(req, res, next) {
-    data.getModel('Project/index',{},function(data){
+    var params={
+        id:req.query.id,
+    }
+    data.getModel('sell/getSellData',params,function(data){
         if(data.code==1){
             var obj={
-                data:data.ret.data
+                data:data.ret
             }
             res.render('myproject/detail_more.html', obj);
         }else {
