@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
             var obj={
                 data:data.ret,
             }
-            res.render('User/index',obj);
+            res.render('user/index',obj);
         }else {
             next();
         }
