@@ -20,7 +20,7 @@
                        placeholder="请输入密码">
                 <span class="Validform_checktip"></span>
             </div>
-            <input id="login" type="submit" class="btn-submit mt20" value="登陆">
+            <input id="login" type="submit" class="btn-submit mt20" value="立即登陆">
 
             <div class="link clearfix">
                 <a class="yellow-light pull-left" href="#">忘记密码 ></a>
@@ -51,7 +51,7 @@
                 callback: function (data) {
                     $.Hidemsg();
                     if (data.code == 1) {
-                        layer.msg(' 登陆成功！');
+                        layer.msg(' 登录成功！');
                         setTimeout(function () {
                             window.location.href = '/User';
                         }, 1000);

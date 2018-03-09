@@ -54,7 +54,7 @@ router.get('/detail', function(req, res, next) {
             })
 
             var obj={
-                data:data.ret,
+                data:data.ret
             };
             res.render('project/detail',obj);
         }else {
@@ -74,7 +74,7 @@ router.post('/schedule', function(req, res, next) {
 
     data.getModel('project/schedule',params,function(data){
         if(data.code==1){
-            res.send({code:1,data:data.desc});
+            res.send({code:1,data:data.ret});
         }else {
             next();
         }
