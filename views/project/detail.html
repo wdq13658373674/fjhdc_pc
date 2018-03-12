@@ -178,9 +178,9 @@
     $(function () {
         /**flash1**/
         var galleryTop = new Swiper('#gallery', {
-            /*autoplay: {
+            autoplay: {
                 delay: 2000,
-            },*/
+            },
             spaceBetween: 10,
             loop: true,
             loopedSlides: 4,
@@ -226,7 +226,7 @@
             schedule_ajax(params);
         })
 
-        layui.use(['layer', 'flow'], function () {
+        layui.use(['layer'], function () {
             var layer = layui.layer;
 
             /**位置周边查看大图**/
