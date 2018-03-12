@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
     }
 
     data.getModel('project_user/index',params,function(data){
+        console.log(data.ret);
         if(data.code==1){
             var obj={
                 data:data.ret

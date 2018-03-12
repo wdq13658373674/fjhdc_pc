@@ -72,7 +72,7 @@ var modules = (function (mod){
     };
     /** 验证手机号 **/
     mod.is_mobile = function(phone) {
-        var reg = /^((\(\d{2,3}\))|(\d{3}\-))?(13|15|18|14|17)\d{9}$/;//手机
+        var reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;//手机
         return reg.test(phone);
     };
     return mod;

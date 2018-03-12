@@ -49,7 +49,7 @@
                         <span class="arc pull-left"></span>
                     </div>
                 </label>
-                <span class="yellow pull-left">我已同意<a href="#">xxx</a>协议</span>
+                <span class="yellow pull-left">我已同意<a class="blue" href="/public/rule">《房计划注册协议》</a>协议</span>
             </div>
 
             <input id="register" type="submit" class="btn-submit mt30" value="立即注册">
@@ -96,9 +96,9 @@
                 },
                 {
                     ele: ".required:eq(2)",
-                    datatype: "*",
+                    datatype: "*6-16",
                     recheck: 'password',
-                    errormsg: '两次输入密码不一致'
+                    // errormsg: '两次输入密码不一致'
                 }
             ]);
 

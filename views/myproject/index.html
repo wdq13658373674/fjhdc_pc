@@ -34,9 +34,9 @@
 
                     <div class="content pull-left">
                         <ul class="msg-list clearfix">
-                            <li class="item w113">
+                            <li class="item w142">
                                 <div class="tit">预计回报率</div>
-                                <div class="con f40"><%=items.max_ratio%></div>
+                                <div class="con f40"><%=Math.round(items.max_ratio)%>%</div>
                             </li>
                             <li class="item w252">
                                 <div class="tit ml30">项目总投资（元）</div>
@@ -51,7 +51,7 @@
                         <ul class="msg-list2 clearfix">
                             <li class="item">
                                 <div class="tit">地块位置</div>
-                                <div class="con"><%=items.address%></div>
+                                <div class="con"><%=items.region%></div>
                             </li>
                             <li class="item">
                                 <div class="tit">容积率</div>

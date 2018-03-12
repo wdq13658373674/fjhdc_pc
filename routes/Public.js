@@ -105,4 +105,11 @@ router.get('/jump', function(req, res, next) {
     res.render('public/jump',obj);
 });
 
+/**
+ * 跳转页面
+ */
+router.get('/rule', function(req, res, next) {
+    res.render('public/regRule');
+});
+
 module.exports = router;

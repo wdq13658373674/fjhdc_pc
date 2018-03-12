@@ -25,7 +25,7 @@
                 <ul class="msg-list clearfix">
                     <li class="item">
                         <div class="tit">预计回报率</div>
-                        <div class="con f40"><%=data.project.max_ratio%></div>
+                        <div class="con f40"><%=data.project.max_ratio%>%</div>
                     </li>
                     <li class="item">
                         <div class="tit ml30">项目总投资（元）</div>
@@ -114,7 +114,6 @@
             var wrap=$('#project-box');
             var html = '';
             $.post('/Myproject/detail_post',params,function(res){
-                console.log(res.data);
                 if(res.code == 1){
                     res.data.forEach(function(item,index){
                         var table_title=''
