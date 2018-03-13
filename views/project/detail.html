@@ -249,6 +249,7 @@
 
                 if (data.code == 1) {
                     var res=data.data;
+                    console.log(res);
                     $.each(res,function(key,item){
                         $.each(item.images,function(k,v){
                             img_list+='<div class="swiper-slide" style="background:url(<%=servers.imgUrl%>'+v.path+') center no-repeat;background-size: auto 100%;"></div>'
