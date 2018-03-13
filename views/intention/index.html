@@ -22,11 +22,11 @@
         <ul class="msg-list clearfix">
             <li class="item item1">
                 <div class="tit">预计收益率</div>
-                <div class="con"><%=project.max_ratio%>%</div>
+                <div class="con"><%=parseFloat(project.max_ratio)%>%</div>
             </li>
             <li class="item item2">
                 <div class="tit">预计项目总投资（元）</div>
-                <div class="con"><%=project.max_amount%></div>
+                <div class="con"><%=parseFloat(project.max_amount)%></div>
             </li>
         </ul>
     </div>
@@ -36,10 +36,10 @@
     <form id="intentionForm" action="" method="post">
         <div class="intention-money">
             <div class="money-box clearfix">
-                <%amount.forEach(function(items){%>
+                <%amount.forEach(function(items,key){%>
                 <label class="check-label">
-                    <input class="check-input" datatype="*" sucmsg=" " type="radio" name="money" value="<%=items.id%>">
-                    <div class="money"><%=items.amount%>~<%=items.max_amount%></div>
+                    <input class="check-input" datatype="*" sucmsg=" " type="radio" name="money" value="<%=items.id%>" checked="<%key==0 ? true : false%>">
+                    <div class="money"><%=parseFloat(items.amount)%>~<%=parseFloat(items.max_amount)%></div>
                 </label>
                 <%})%>
             </div>
