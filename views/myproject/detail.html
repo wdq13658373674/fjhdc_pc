@@ -114,6 +114,7 @@
             var wrap=$('#project-box');
             var html = '';
             $.post('/Myproject/detail_post',params,function(res){
+                console.log(res.data);
                 if(res.code == 1){
                     res.data.forEach(function(item,index){
                         var table_title=''

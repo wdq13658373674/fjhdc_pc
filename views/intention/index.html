@@ -39,7 +39,7 @@
                 <%amount.forEach(function(items){%>
                 <label class="check-label">
                     <input class="check-input" datatype="*" sucmsg=" " type="radio" name="money" value="<%=items.id%>">
-                    <div class="money"><%=items.amount%></div>
+                    <div class="money"><%=items.amount%>~<%=items.max_amount%></div>
                 </label>
                 <%})%>
             </div>

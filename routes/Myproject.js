@@ -51,6 +51,7 @@ router.post('/detail_post', function(req, res, next) {
        pid:req.body.pid
    }
     data.getModel('sell/getMenuChlild',params,function(data){
+        console.log(data.ret);
         if(data.code==1){
             res.send({
                 code:1,
