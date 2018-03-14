@@ -71,6 +71,7 @@ router.post('/login_post', function(req, res, next) {
     }
 
     data.getModel('user_login/login',params,function(data){
+        console.log(data);
         if(data.code==1 && data.errcode==0){
             var uid = data.ret;
             req.session.user=uid;//设置session
