@@ -9,7 +9,6 @@ var data=new Model();
  */
 router.get('/', function(req, res, next) {
     data.getModel('Project/index',{},function(data){
-        console.log(data.ret);
         if(data.code==1){
             var obj={
                 data:data.ret.data,
