@@ -56,6 +56,7 @@ router.get('/detail', function(req, res, next) {
             var obj={
                 data:data.ret
             };
+
             res.render('project/detail',obj);
         }else {
             next();
